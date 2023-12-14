@@ -1,89 +1,90 @@
-# Full-Stack React Example
+# Unlock the Code: Transform Your Future with Galvanize!
 
-This repo contains an example of a full-stack application with an express backend and a React frontend.
+## Contributors:
 
-It uses vite as the module bundler and dotenv for configuration. It's organized as a mono-repo using [npm workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces) which allows us to have our client and server in one repo.
+- [Scott Shannon](https://github.com/orgs/shannonscotta) [Project Manager]
+- [Greg Pappas](https://github.com/gnprwx) [UI/UX Designer]
+- [Blaise Pascual](https://github.com/AGI-CEO) [Architecture Owner]
+- [John Gordinier](https://github.com/JohnGordinier) [Software Engineer]
+- [Mitchell Keo](https://github.com/mitchellnkeo) [Software Engineer]
+- [Mark Northup](https://github.com/mnorthup28) [Software Engineer]
+- [Quinn Kajiwara](https://github.com/kajiwara12) [Software Engineer]
+- [Ethan Berkebile](https://github.com/ethanberke) [Software Engineer]
 
-> **Note**: When you run `npm install` at the root, it will install all dependencies listed in `package.json`, `server/package.json`, and `client/package.json`.
+## Project Overview
 
-## Customizing the Template
+Welcome to our culminating project for Operation Level Up by Galvanize! This project embodies the collective effort of our eight-member team, showcasing the joint effort of our learning journey through the Galvanize curriculum.
 
-1. Create new repo using this one as a template.
-1. Pull that repo down.
+### Collaborating for Real-Life Impact
 
-## Development Setup
+In this endeavor, we've embraced a real-world scenario. We engaged with a nontechnical stakeholder who shared their vision for the appearance and functionality of an application/website. By leveraging our acquired skills in various languages and libraries from the Operation Level Up Curriculum, we've woven together a comprehensive solution that breathes life into this vision.
 
-1. Install dependencies: `npm install`
-1. Create your database: `createdb YOUR_DB`
-1. Update `./server/migration.sql` to the schema for your application.
-1. Run your migrations: `psql -f server/migration.sql YOUR_DB`
-1. Create your `.env` file: `cp .env.template .env`
-1. Add your info in `.env`
-1. Run the app: `npm run dev`
+### A Fusion of Learning and Application
 
-## Scripts
+Our project is a testament to the fusion of theoretical knowledge and practical application. It's a full-stack embodiment of our expertise in different technologies, demonstrating the depth of our learning journey at Galvanize.
 
-**Root**
+# Key Features
 
-- `npm run dev` - Runs the API server and hosts your frontend assets.
-- `npm run dev:server` - Runs the API server in watch mode.
-- `npm run dev:client` - Hosts your frontend assets.
+#### Searchable Knowledge via Chatbox AI
 
-**/client**
+Enhance user experience by integrating a chatbox feature empowered by AI. This functionality enables users to input specific queries, leveraging artificial intelligence to deliver accurate and tailored responses.
 
-- `npm run dev` - Hosts your assets.
-- `npm run build` - Builds your assets (mainly used in CI/CD).
+#### Comprehensive Cheat Sheet
 
-**/server**
+Mitigate roadblocks caused by syntax errors with a comprehensive repository of common commands. Whether it's GIT, PSQL, or any other command, this feature ensures users avoid unnecessary setbacks due to simple mistakes.
 
-- `npm run dev` - Runs the server in watch mode.
-- `npm run start` - Starts the server (mainly used when deploying).
+#### Educational Glossary
 
-## Deployment
+Facilitate continuous learning by providing a curated glossary. Tailored for students, this section empowers users to stay updated with course materials or proactively delve into new concepts, vocabulary, and techniques.
 
-To deploy this project on Render, you'll need to do the following:
+# Tech Stack
 
-1. Provision a Postgres database instance (you can also create a new database in an existing Postgres instance).
-1. Deploy your backend as a Web Service.
-1. Deploy your frontend assets as a Static Site.
+![JavaScript](https://img.icons8.com/color/48/000000/javascript.png) JavaScript ES6
+![HTML](https://img.icons8.com/color/48/000000/html-5.png) HTML
+![CSS](https://img.icons8.com/color/48/000000/css3.png) CSS
+![React](https://img.icons8.com/color/48/000000/react-native.png) React
+![Express](https://img.icons8.com/color/48/000000/nodejs.png) Express
+![Node.js](https://img.icons8.com/color/48/000000/nodejs.png) Node.js
+![Tailwind CSS](https://img.icons8.com/color/48/000000/tailwind-css.png) Tailwind CSS
 
-### Provision Postgres Instance
+## Problem Statement
 
-If you have previously provisioned a Postgres instance in Render, you won't be able to create a new one. However, you can create a new database within the existing Postgres instance by following these steps:
+As newcomers to Full Stack Development, students are inundated with a wealth of information encompassing various languages, concepts, vocabulary, data structures, and algorithms. This extensive array of knowledge often leads to the challenge of navigating through numerous articles and videos to find solutions to seemingly simple questions.
 
-1. View your Postgres instance in Render.
-1. Copy the `External Database URL`.
-1. Run `psql <EXTERNAL_DATABASE_URL>`.
-1. Create your database: `CREATE DATABASE my_db`.
-1. Copy the `Internal Database URL` and replace the string after the final slash with the name of the database you created in the previous step. e.g. `postgres://my-user:lkf8ehg@f893hfg/my_postgres_5x9g` becomes `postgres://my-user:lkf8ehg@f893hfg/my_db`.
-1. Save that URL for the next step.
+# Our Solution
 
-### Create Web Service
+### Searchable AI Chatbox
 
-To deploy your backend, create a new Web Service in Render with the following options:
+Empowered by AI, our platform incorporates a searchable chatbox. This functionality enables users to ask specific questions and receive concise answers directly, eliminating the need to comb through extensive content. It streamlines learning by delivering targeted responses efficiently.
 
-![](images/server-settings.png)
+### Cheat Sheet Feature
 
-> **Note**: The root directory is important since this is where our backend lives in this project structure.
+Our platform offers a categorized cheat sheet encompassing multiple topics. This feature serves as a quick reference, providing students with easy access to commands in Command Line Interface (CLI), Postgresql, DOM manipulation, CSS, and more. It streamlines the search process for crucial commands and concepts.
 
-When adding the `DATABASE_URL` environment variable, use the URL you saved from the previous step.
+### Educational Glossary
 
-### Create Static Site
+The platform includes an educational glossary, systematically organized in alphabetical order. This glossary simplifies the search for definitions and key concepts, offering linked articles for easy navigation. Users can swiftly access pertinent information instead of grappling through voluminous chapters, facilitating a more effective learning experience.
 
-To deploy your frontend, create a new Static Site in Render with the following options:
+Through the integration of these features, our solution aims to alleviate the challenges associated with information retrieval, fostering a more streamlined and efficient learning journey for aspiring Full Stack Developers.
 
-![](images/client-settings.png)
+#### Lessons Learned from Agile, CI/CD, Testing
 
-There's one extra step which is to add a Redirect/Rewrite rule.
+#### Anticipated Technical Challenges
 
-1. Set the `Source` field to `/api/*`.
-1. For the `Destination` field, go to your Web Service and copy its public URL (e.g. `https://react-mvp-api-fthm.onrender.com`) and append `/api/*` to the end of it (e.g. `https://react-mvp-api-fthm.onrender.com/api/*`)
-1. Set the `Action` to `Rewrite`.
+#### Unforeseen Technical Challenges
 
-![](images/rewrite-rule.png)
+#### Video Demo or Screenshots of the App
 
-This rule handles proxying API requests to the Static Site over to the Web Service, circumventing any CORS issues.
+#### How the App Works
 
-### Deployment Debugging
+#### Required Research
 
-To test your deployment, start with testing your backend APIs to ensure you can get data from your database. Once that is established, open up your Static Site and look for any errors in the console.
+#### Notes from Sprint Retro
+
+#### Future Features
+
+What the app is X
+What problem you're solving X
+How you solved the problem X
+what technologies you used X
+what you learned from it
