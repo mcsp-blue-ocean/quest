@@ -43,9 +43,13 @@ Facilitate continuous learning by providing a curated glossary. Tailored for stu
 ![HTML](https://img.icons8.com/color/48/000000/html-5.png) HTML
 ![CSS](https://img.icons8.com/color/48/000000/css3.png) CSS
 ![React](https://img.icons8.com/color/48/000000/react-native.png) React
-![Express](https://img.icons8.com/color/48/000000/nodejs.png) Express
 ![Node.js](https://img.icons8.com/color/48/000000/nodejs.png) Node.js
-![Tailwind CSS](https://img.icons8.com/color/48/000000/tailwind-css.png) Tailwind CSS
+
+Express
+
+Tailwind CSS
+
+<!-- Images to be found for Express and Tailwind CSS -->
 
 ## Problem Statement
 
@@ -82,9 +86,3 @@ Through the integration of these features, our solution aims to alleviate the ch
 #### Notes from Sprint Retro
 
 #### Future Features
-
-What the app is X
-What problem you're solving X
-How you solved the problem X
-what technologies you used X
-what you learned from it
