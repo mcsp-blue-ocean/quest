@@ -1,6 +1,6 @@
 # Unlock the Code: Transform Your Future with Galvanize!
 
-## Contributors:
+## Contributors
 
 - [Scott Shannon](https://github.com/orgs/shannonscotta) [Project Manager]
 - [Greg Pappas](https://github.com/gnprwx) [UI/UX Designer]
@@ -23,31 +23,15 @@ In this endeavor, we've embraced a real-world scenario. We engaged with a nontec
 
 Our project is a testament to the fusion of theoretical knowledge and practical application. It's a full-stack embodiment of our expertise in different technologies, demonstrating the depth of our learning journey at Galvanize.
 
-# Key Features
-
-#### Searchable Knowledge via Chatbox AI
-
-Enhance user experience by integrating a chatbox feature empowered by AI. This functionality enables users to input specific queries, leveraging artificial intelligence to deliver accurate and tailored responses.
-
-#### Comprehensive Cheat Sheet
-
-Mitigate roadblocks caused by syntax errors with a comprehensive repository of common commands. Whether it's GIT, PSQL, or any other command, this feature ensures users avoid unnecessary setbacks due to simple mistakes.
-
-#### Educational Glossary
-
-Facilitate continuous learning by providing a curated glossary. Tailored for students, this section empowers users to stay updated with course materials or proactively delve into new concepts, vocabulary, and techniques.
-
-# Tech Stack
+### Tech Stack
 
 ![JavaScript](https://img.icons8.com/color/48/000000/javascript.png) JavaScript ES6
 ![HTML](https://img.icons8.com/color/48/000000/html-5.png) HTML
 ![CSS](https://img.icons8.com/color/48/000000/css3.png) CSS
 ![React](https://img.icons8.com/color/48/000000/react-native.png) React
 ![Node.js](https://img.icons8.com/color/48/000000/nodejs.png) Node.js
-
-Express
-
-Tailwind CSS
+![Express](https://img.icons8.com/color/48/000000/nodejs.png) Express
+![Tailwind CSS](https://img.icons8.com/color/48/000000/tailwind-css.png) Tailwind CSS
 
 <!-- Images to be found for Express and Tailwind CSS -->
 
@@ -55,7 +39,7 @@ Tailwind CSS
 
 As newcomers to Full Stack Development, students are inundated with a wealth of information encompassing various languages, concepts, vocabulary, data structures, and algorithms. This extensive array of knowledge often leads to the challenge of navigating through numerous articles and videos to find solutions to seemingly simple questions.
 
-# Our Solution
+## Our Solution
 
 ### Searchable AI Chatbox
 
@@ -63,26 +47,32 @@ Empowered by AI, our platform incorporates a searchable chatbox. This functional
 
 ### Cheat Sheet Feature
 
-Our platform offers a categorized cheat sheet encompassing multiple topics. This feature serves as a quick reference, providing students with easy access to commands in Command Line Interface (CLI), Postgresql, DOM manipulation, CSS, and more. It streamlines the search process for crucial commands and concepts.
+Our platform offers a categorized cheat sheet encompassing multiple topics. This feature serves as a quick reference, providing students with easy access to commands in Command Line Interface (CLI), Postgresql, Node.js, and Git. It streamlines the search process for crucial commands and concepts.
 
-### Educational Glossary
+<!-- ### Educational Glossary
 
 The platform includes an educational glossary, systematically organized in alphabetical order. This glossary simplifies the search for definitions and key concepts, offering linked articles for easy navigation. Users can swiftly access pertinent information instead of grappling through voluminous chapters, facilitating a more effective learning experience.
 
-Through the integration of these features, our solution aims to alleviate the challenges associated with information retrieval, fostering a more streamlined and efficient learning journey for aspiring Full Stack Developers.
+Through the integration of these features, our solution aims to alleviate the challenges associated with information retrieval, fostering a more streamlined and efficient learning journey for aspiring Full Stack Developers. -->
 
-#### Lessons Learned from Agile, CI/CD, Testing
+### Lessons Learned from Agile, CI/CD, Testing
 
-#### Anticipated Technical Challenges
+## Anticipated Technical Challenges
 
-#### Unforeseen Technical Challenges
+As we embark on this project, we anticipate several technical challenges that demand thoughtful consideration and strategic solutions. Here are the specific challenges we foresee:
 
-#### Video Demo or Screenshots of the App
+### Learning and Implementing Single-Factor Authentication
 
-#### How the App Works
+Integrating a secure single-factor authentication system introduces challenges related to both learning and implementation. We'll need to delve into authentication mechanisms, decide on an appropriate approach, and ensure its effective integration into our application. Crafting a secure and user-friendly authentication process is paramount, requiring a thorough understanding of authentication protocols and best practices.
 
-#### Required Research
+### Tailoring the AI Chatbox for Full Stack Development
 
-#### Notes from Sprint Retro
+While leveraging AI for the chatbox feature, a key challenge is tailoring its responses specifically to the needs of Full Stack Development. We aim to go beyond a generic chatbot by fine-tuning the AI model to understand and respond to queries related to languages, frameworks, and development processes. This challenge involves customizing the underlying model to provide contextually relevant information for our target audience.
 
-#### Future Features
+### Unforeseen Technical Challenges
+
+### Video Demo or Screenshots of the App
+
+### Required Research
+
+### Future Features
