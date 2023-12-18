@@ -82,3 +82,4 @@ INSERT INTO commands( category_id,command_syntax,command_description) VALUES
 INSERT INTO commands( category_id,command_syntax,command_description) VALUES 
 (7, 'brew doctor', 'diagnoses and reports problems in Homebrew installations'),
 (7, 'brew upgrade && brew update', 'sequentially updates installed packages and then Homebrew itself with its package database.');
+--save
