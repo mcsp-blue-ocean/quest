@@ -1,8 +1,10 @@
+import Header from "./Header";
+
 function App() {
   return (
-    <>
-      <p className="text-7xl text-center underline">Hello Fish Monglers!</p>
-    </>
+    <div id="main" className="h-[100dvh]">
+      <Header />
+    </div>
   );
 }
 
