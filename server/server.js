@@ -25,9 +25,7 @@ app.delete("/api/commands/:id", deleteCommands);
 
 async function getCommands(_, res, next) {
   try {
-    const data = await client.query(
-      "SELECT * FROM commands"
-    );
+    const data = await client.query("SELECT * FROM commands");
     res.send(data.rows);
   } catch (error) {
     next(error);
@@ -36,9 +34,7 @@ async function getCommands(_, res, next) {
 
 async function getCategories(_, res, next) {
   try {
-    const data = await client.query(
-      "SELECT * FROM categories"
-    );
+    const data = await client.query("SELECT * FROM categories");
 
     res.send(data.rows);
   } catch (error) {
@@ -60,7 +56,7 @@ async function getCommandsByCategoryId(req, res, next) {
 }
 
 async function postCommands(req, res, next) {
-  const {category_id, command_syntax, command_description} = req.body;
+  const { category_id, command_syntax, command_description } = req.body;
   try {
     const data = await client.query(
       "INSERT INTO commands(category_id, command_syntax, command_description) VALUES ($1, $2, $3) RETURNING *",
@@ -74,7 +70,7 @@ async function postCommands(req, res, next) {
 
 async function editCommands(req, res, next) {
   const commandId = Number.parseInt(req.params.id);
-  const {category_id, command_syntax, command_description} = req.body;
+  const { category_id, command_syntax, command_description } = req.body;
   try {
     const data = await client.query(
       `UPDATE commands SET
@@ -87,7 +83,7 @@ async function editCommands(req, res, next) {
     if (data.rows.length === 0) {
       res.sendStatus(404);
     } else {
-      res.send(data.rows[0])
+      res.send(data.rows[0]);
     }
   } catch (error) {
     next(error);
@@ -113,14 +109,13 @@ async function deleteCommands(req, res, next) {
 
 app.use((req, res, next) => {
   res.status(404).send("Not Found");
-})
+});
 
 app.use((err, req, res, next) => {
   console.error("Global error: ", err);
-  res.status(500).json({ error: "Internal Servor Error"});
-})
+  res.status(500).json({ error: "Internal Servor Error" });
+});
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
-
