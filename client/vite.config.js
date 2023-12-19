@@ -8,7 +8,7 @@ export default defineConfig({
     imagetools({
       defaultDirectives: (url) => {
         if (url.searchParams.has("web")) {
-          return new URLSearchParams("format=webp");
+          return new URLSearchParams({format: 'webp'});
         }
         return new URLSearchParams();
       },
