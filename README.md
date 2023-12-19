@@ -1,4 +1,4 @@
-# Unlock the Code: Transform Your Future with Galvanize!
+# Unlock the Code: Transform Your Future with Quest!
 
 ## Contributors
 
@@ -17,7 +17,7 @@ Welcome to our culminating project for Operation Level Up by Galvanize! This pro
 
 ### Collaborating for Real-Life Impact
 
-In this endeavor, we've embraced a real-world scenario. We engaged with a nontechnical stakeholder who shared their vision for the appearance and functionality of an application/website. By leveraging our acquired skills in various languages and libraries from the Operation Level Up Curriculum, we've woven together a comprehensive solution that breathes life into this vision.
+In this endeavor, we've embraced a real-world scenario. We engaged with a nontechnical stakeholder who shared their vision for the appearance and functionality of an application/website. By leveraging our acquired skills in various languages and libraries from the Operation Level Up Curriculum, supplemental materials, and more, we've woven together a comprehensive solution that breathes life into this vision.
 
 ### A Fusion of Learning and Application
 
@@ -32,8 +32,6 @@ Our project is a testament to the fusion of theoretical knowledge and practical 
 ![Node.js](https://img.icons8.com/color/48/000000/nodejs.png) Node.js
 ![Express](https://img.icons8.com/color/48/000000/nodejs.png) Express
 ![Tailwind CSS](https://img.icons8.com/color/48/000000/tailwind-css.png) Tailwind CSS
-
-<!-- Images to be found for Express and Tailwind CSS -->
 
 ## Problem Statement
 
