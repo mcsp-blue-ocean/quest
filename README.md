@@ -49,14 +49,6 @@ Empowered by AI, our platform incorporates a searchable chatbox. This functional
 
 Our platform offers a categorized cheat sheet encompassing multiple topics. This feature serves as a quick reference, providing students with easy access to commands in Command Line Interface (CLI), Postgresql, Node.js, and Git. It streamlines the search process for crucial commands and concepts.
 
-<!-- ### Educational Glossary
-
-The platform includes an educational glossary, systematically organized in alphabetical order. This glossary simplifies the search for definitions and key concepts, offering linked articles for easy navigation. Users can swiftly access pertinent information instead of grappling through voluminous chapters, facilitating a more effective learning experience.
-
-Through the integration of these features, our solution aims to alleviate the challenges associated with information retrieval, fostering a more streamlined and efficient learning journey for aspiring Full Stack Developers. -->
-
-### Lessons Learned from Agile, CI/CD, Testing
-
 ## Anticipated Technical Challenges
 
 As we embark on this project, we anticipate several technical challenges that demand thoughtful consideration and strategic solutions. Here are the specific challenges we foresee:
@@ -69,10 +61,12 @@ Integrating a secure single-factor authentication system introduces challenges r
 
 While leveraging AI for the chatbox feature, a key challenge is tailoring its responses specifically to the needs of Full Stack Development. We aim to go beyond a generic chatbot by fine-tuning the AI model to understand and respond to queries related to languages, frameworks, and development processes. This challenge involves customizing the underlying model to provide contextually relevant information for our target audience.
 
-### Unforeseen Technical Challenges
+## Unforeseen Technical Challenges
 
-### Video Demo or Screenshots of the App
+## Lessons Learned from Agile, CI/CD, Testing
 
-### Required Research
+## Video Demo or Screenshots of the App
 
-### Future Features
+## Required Research
+
+## Future Features
