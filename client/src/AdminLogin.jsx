@@ -1,26 +1,21 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const AdminLogin = () => {
+const AdminLogin = ({ onLogin }) => {
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const handleLogin = async () => {
     try {
-      const loginResponse = await axios.post(
-        // CURRENTLY USING A LOCAL HOST, THIS WILL NEED TO BE UPDATED WITH THE DEPLOYMENT URL
-        "http://localhost:3001/quest/login",
-        {
-          password,
-        }
-      );
-      if (loginResponse.data.token) {
-        console.log("Access Granted! Open Sesame!");
-      } else {
-        setError("Access Denied! You shall not pass!");
-      }
+      // Pass both username and password in the login request
+      await onLogin({ username, password });
+      // Clear username and password after successful login
+      setUsername("");
+      setPassword("");
+      setError("");
     } catch (error) {
-      console.error("Login failed:", error.response.data.error);
+      console.error("Login failed:", error);
       setError("Login failed. Please try again.");
     }
   };
@@ -29,6 +24,15 @@ const AdminLogin = () => {
     <div>
       <h2>Login</h2>
       <label>
+        Username:
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+      </label>
+      <br />
+      <label>
         Password:
         <input
           type="password"
@@ -36,8 +40,9 @@ const AdminLogin = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
+      <br />
       <button onClick={handleLogin}>Login</button>
-      {/* Text is red when error occurs */}
+      {/* Text is red when an error occurs */}
       {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );

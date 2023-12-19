@@ -3,6 +3,7 @@ import pg from "pg";
 import dotenv from "dotenv";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import cors from "cors";
 
 dotenv.config({ path: "../.env" });
 
@@ -11,18 +12,6 @@ const { PORT, DATABASE_URL, SECRET_KEY } = process.env;
 const client = new pg.Client({
   connectionString: DATABASE_URL,
 });
-
-await client.connect();
-
-const app = express();
-
-app.use(express.json());
-
-//ADMINISTRATION LOGIN AUTHENTICATION
-if (!SECRET_KEY) {
-  console.error("Error: No secret key found in .env file.");
-  process.exit(1);
-}
 
 client
   .connect()
@@ -34,16 +23,26 @@ client
     process.exit(1);
   });
 
+const app = express();
+
+app.use(cors());
 app.use(express.json());
+
+//ADMINISTRATION LOGIN AUTHENTICATION
+if (!SECRET_KEY) {
+  console.error("Error: No secret key found in .env file.");
+  process.exit(1);
+}
+
 // ADMIN LOGIN
 const adminAccount = {
   username: "admin",
-  passwordHash: "$2b$10$6h2O/QnVoMaaBvtVVYR2KuJDcC3Jg3.NYKF/pJ98YIt4n4MIYc2CS",
+  passwordHash: "$2b$10$L0/mBg265PvSOOa/nxyHwuamS94nBmGtbFVtwaa44pvDnhgOrUgEC",
 };
 
-app.post("/login", (req, res) => {
+app.post("/quest/login", (req, res) => {
   const { username, password } = req.body;
-
+  console.log(username, password);
   // CONDITIONAL FOR LOGGING IN TO THE ADMIN ACCOUNT
   if (
     username === adminAccount.username &&
