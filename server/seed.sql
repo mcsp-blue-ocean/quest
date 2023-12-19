@@ -1,15 +1,3 @@
--- CREATE TABLE commands(
---     id SERIAL  NOT NULL  PRIMARY KEY,
---     category_id INT NOT NULL,
---     command_syntax TEXT NOT NULL,
---     command_description TEXT NOT NULL
--- );
--- CREATE TABLE categories(
---     id SERIAL  NOT NULL  PRIMARY KEY,
---     category TEXT NOT NULL
--- );
--- ALTER TABLE
---     commands ADD CONSTRAINT commands_category_id_foreign FOREIGN KEY(category_id) REFERENCES categories(id);
 
 INSERT INTO categories(category,parent_category) VALUES 
 ('REACT','Front-End Development'),
@@ -19,12 +7,6 @@ INSERT INTO categories(category,parent_category) VALUES
 ('NODE','Back-End Development'),
 ('VIM','Editor'),
 ('HOMEBREW','Mac Package Manager');
--- ('PSQL'),
--- ('SQL'),
--- ('NODE'),
--- ('VIM'),
--- ('HOMEBREW');
-
 
 INSERT INTO commands( category_id,command_syntax,command_description) VALUES 
 (1,'npm init react-app<react-app-name>','Creates a new react project with a default template'),
@@ -87,4 +69,3 @@ INSERT INTO commands( category_id,command_syntax,command_description) VALUES
 INSERT INTO commands( category_id,command_syntax,command_description) VALUES 
 (7, 'brew doctor', 'diagnoses and reports problems in Homebrew installations'),
 (7, 'brew upgrade && brew update', 'sequentially updates installed packages and then Homebrew itself with its package database.');
---save
