@@ -10,7 +10,9 @@ CREATE TABLE commands(
 );
 CREATE TABLE categories(
     id SERIAL  NOT NULL  PRIMARY KEY,
-    category TEXT NOT NULL
+    category TEXT NOT NULL,
+    parent_category TEXT NOT NULL
+
 );
 ALTER TABLE
     commands ADD CONSTRAINT commands_category_id_foreign FOREIGN KEY(category_id) REFERENCES categories(id);
@@ -19,7 +21,7 @@ ALTER TABLE
 CREATE TABLE chat_history(
     id SERIAL NOT NULL PRIMARY KEY,
     user_id SERIAL NOT NULL ,
-    user_message TEXT NOT NULL
-    ai_message TEXT NOT NULL
+    user_message TEXT NOT NULL,
+    ai_message TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL);
 
