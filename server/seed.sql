@@ -11,14 +11,19 @@
 -- ALTER TABLE
 --     commands ADD CONSTRAINT commands_category_id_foreign FOREIGN KEY(category_id) REFERENCES categories(id);
 
-INSERT INTO categories(category) VALUES 
-('REACT'),
-('GIT'),
-('PSQL'),
-('SQL'),
-('NODE'),
-('VIM'),
-('HOMEBREW');
+INSERT INTO categories(category,parent_category) VALUES 
+('REACT','Front-End Development'),
+('GIT','Version Control System'),
+('PSQL','Back-End Development'),
+('SQL','Back-End Development'),
+('NODE','Back-End Development'),
+('VIM','Editor'),
+('HOMEBREW','Mac Package Manager');
+-- ('PSQL'),
+-- ('SQL'),
+-- ('NODE'),
+-- ('VIM'),
+-- ('HOMEBREW');
 
 
 INSERT INTO commands( category_id,command_syntax,command_description) VALUES 
