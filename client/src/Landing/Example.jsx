@@ -1,4 +1,4 @@
-import Window from "../Landing/Window";
+import Window from "./Window";
 
 const Example = () => {
   const examples = (
