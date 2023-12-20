@@ -1,4 +1,4 @@
-import { socialIcons } from "./social";
+import { socialIcons } from "./socialData";
 
 const Social = () => {
   return (
