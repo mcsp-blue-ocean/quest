@@ -1,10 +1,14 @@
 import Tech from "./How/Tech";
-import computer from "./assets/how/computer.png?web";
+import Window from "./Window";
+import computerImg from "./assets/how/computer.png";
 
 const How = () => {
+  const computer = (
+    <img src={computerImg} alt="computer" className="w-3/4 mx-auto" />
+  );
   return (
     <div className="flex sm:flex-row flex-col items-center gap-5 bg-stone-800 p-5 lg:py-8 lg:px-20">
-      <div id="left-side" className="sm:w-1/2 sm:pr-5">
+      <div id="left-side" className="sm:w-1/2">
         <p className="text-3xl sm:text-4xl font-bold">
           <span className="text-sky-400">Q</span>uick
           <span className="text-sky-400"> U</span>nderstanding of
@@ -22,7 +26,7 @@ const How = () => {
       </div>
       <div id="right-side" className="flex flex-col sm:w-1/2 items-center">
         <Tech />
-        <img src={computer} alt="computer" />
+        <Window inside={computer} color={"bg-sky-900"} />
       </div>
     </div>
   );
