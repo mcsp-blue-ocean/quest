@@ -1,20 +1,48 @@
 import express from "express";
 import pg from "pg";
 import dotenv from "dotenv";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import cors from "cors";
 
 dotenv.config({ path: "../.env" });
 
-const { PORT, DATABASE_URL } = process.env;
+const { PORT, DATABASE_URL, SECRET_KEY, ADMIN_HASH } = process.env;
 
 const client = new pg.Client({
   connectionString: DATABASE_URL,
 });
 
+
 await client.connect();
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
+
+// ADMIN LOGIN
+const adminAccount = {
+  username: "admin",
+  passwordHash: ADMIN_HASH,
+};
+
+app.post("/quest/login", (req, res) => {
+  const { username, password } = req.body;
+  console.log(username, password);
+  // CONDITIONAL FOR LOGGING IN TO THE ADMIN ACCOUNT
+  if (
+    username === adminAccount.username &&
+    bcrypt.compareSync(password, adminAccount.passwordHash)
+  ) {
+    const token = jwt.sign({ username: adminAccount.username }, SECRET_KEY, {
+      expiresIn: "1h",
+    });
+    res.json({ token });
+  } else {
+    res.status(401).json({ error: "Invalid credentials! You shall not pass." });
+  }
+});
 
 app.get("/api/commands", getCommands);
 app.get("/api/commands/:id", getCommandsByCategoryId);
