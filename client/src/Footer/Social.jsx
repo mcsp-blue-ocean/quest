@@ -2,7 +2,7 @@ import { socialIcons } from "./socialData";
 
 const Social = () => {
   return (
-    <ul className="flex gap-10">
+    <ul className="flex gap-5 sm:gap-10">
       {socialIcons.map(({ icon, id, alt }) => {
         return (
           <li
