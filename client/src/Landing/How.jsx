@@ -18,7 +18,7 @@ const How = () => {
         </p>
         <div className="mt-5">
           <p className="font-bold underline">How To Use</p>
-          <p className="w-3/4">
+          <p className="sm:w-3/4">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
