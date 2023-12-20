@@ -26,7 +26,7 @@ const How = () => {
       </div>
       <div id="right-side" className="flex flex-col sm:w-1/2 items-center">
         <Tech />
-        <Window inside={computer} color={"bg-sky-900"} />
+        <Window content={computer} color={"bg-sky-900"} />
       </div>
     </div>
   );
