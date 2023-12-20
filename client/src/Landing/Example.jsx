@@ -30,8 +30,12 @@ const Example = () => {
           the examples and stuff.
         </p>
         <p className="mb-5 sm:w-3/4">
-          Yes. Much wow. Very wow. Wow. Wow. Yes. Much wow. Very wow. Wow. Wow.
-          Yes. Much wow. Very wow. Wow. Wow.
+          Embark on the Ultimate Coding Quest with QUEST: Quick Understanding of
+          Essential Software Technologies! Unleash the full potential of command
+          line mastery, from Node.js to SQL, Git to React. Elevate your skills
+          with real command examples and let our AI Chatbot be your guide. Join
+          us on a journey where learning meets excitement. Start your QUEST
+          today!"
         </p>
         <button className="bg-stone-800 font-bold p-3 rounded">
           Start Learning Now!
