@@ -4,7 +4,7 @@ const Footer = () => {
   const navigation = ["Features", "Resources", "Blog", "Support"];
   return (
     <div className="flex flex-col items-center gap-10 px-20 py-10">
-      <ul className="flex gap-32 justify-center">
+      <ul className="flex gap-6 sm:gap-32 justify-center">
         {navigation.map((link, index) => (
           <li key={index}>{link}</li>
         ))}
