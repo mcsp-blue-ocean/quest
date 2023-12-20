@@ -7,7 +7,9 @@ const Icons = () => {
       id: 0,
       image: login,
     },
-    { id: 1, image: admin },
+    { id: 1, 
+      image: admin 
+    },
   ];
   return (
     <ul id="icons" className="flex sm:justify-end justify-center">
