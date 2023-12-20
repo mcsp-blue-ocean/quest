@@ -2,7 +2,7 @@ const Window = ({ inside, color }) => {
   const buttonsStyle = "bg-sky-300 h-4 w-4 rounded-full";
   return (
     <div
-      className={`${color} rounded-lg py-2`}
+      className={`${color} rounded-lg py-2 shadow-lg`}
       style={{ width: "100%", aspectRatio: "6/4" }}
     >
       <div
