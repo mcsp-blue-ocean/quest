@@ -1,17 +1,18 @@
 import Window from "./Window";
 
 const Example = () => {
+  const pStyle = "max-w-prose leading-relaxed mb-2";
   const examples = (
     <ul id="examples" className="p-2">
-      <li>
+      <li className={pStyle}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </li>
-      <li>
+      <li className={pStyle}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </li>
-      <li>
+      <li className={pStyle}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </li>
@@ -25,11 +26,11 @@ const Example = () => {
       </div>
       <div id="right-side" className="sm:w-1/2">
         <p className="text-6xl font-bold underline mb-5">Examples</p>
-        <p className="mb-2 max-w-prose">
+        <p className={`${pStyle} mb-5`}>
           Crazy cool stuff about the examples and stuff. Crazy cool stuff about
           the examples and stuff.
         </p>
-        <p className="mb-5 max-w-prose">
+        <p className={`${pStyle} mb-5`}>
           Embark on the Ultimate Coding Quest with QUEST: Quick Understanding of
           Essential Software Technologies! Unleash the full potential of command
           line mastery, from Node.js to SQL, Git to React. Elevate your skills

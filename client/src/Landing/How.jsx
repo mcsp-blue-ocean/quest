@@ -18,8 +18,8 @@ const How = () => {
           <span className={blue}> T</span>echnologies
         </p>
         <div className="mt-5">
-          <p className="font-bold underline">How To Use</p>
-          <p className="max-w-prose">
+          <p className="font-bold text-lg underline">How To Use</p>
+          <p className="max-w-prose leading-relaxed text-lg">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
