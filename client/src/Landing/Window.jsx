@@ -1,4 +1,4 @@
-const Window = ({ content, color }) => {
+const Window = ({ children, color }) => {
   const buttonsStyle = "bg-sky-300 h-4 w-4 rounded-full";
   return (
     <div
@@ -13,7 +13,7 @@ const Window = ({ content, color }) => {
         <div className={buttonsStyle}></div>
         <div className={buttonsStyle}></div>
       </div>
-      {content}
+      {children}
     </div>
   );
 };
