@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import AdminLoginTest from "./AdminLoginTest";
 
 const AdminLogin = ({ onLogin }) => {
   const [username, setUsername] = useState("");
