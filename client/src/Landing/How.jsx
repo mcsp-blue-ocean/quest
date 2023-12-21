@@ -1,6 +1,6 @@
 import Tech from "./Tech";
 import Window from "./Window";
-import computerImg from "../assets/how/computer.png";
+import computerImg from "../assets/landing/computer.png";
 
 const How = () => {
   const blue = "text-sky-400";

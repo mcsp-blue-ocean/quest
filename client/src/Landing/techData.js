@@ -1,8 +1,8 @@
-import html from "../assets/how/html.png?web";
-import css from "../assets/how/css.png?web";
-import js from "../assets/how/js.png?web";
-import react from "../assets/how/react.png?web";
-import sql from "../assets/how/sql.png?web";
+import html from "../assets/landing/html.png?web";
+import css from "../assets/landing/css.png?web";
+import js from "../assets/landing/js.png?web";
+import react from "../assets/landing/react.png?web";
+import sql from "../assets/landing/sql.png?web";
 
 export const techIcons = [
   {
