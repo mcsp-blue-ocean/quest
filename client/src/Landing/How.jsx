@@ -3,6 +3,7 @@ import Window from "./Window";
 import computerImg from "../assets/how/computer.png";
 
 const How = () => {
+  const blue = "text-sky-400";
   const computer = (
     <img src={computerImg} alt="computer" className="w-3/4 mx-auto" />
   );
@@ -10,11 +11,11 @@ const How = () => {
     <div className="flex sm:flex-row flex-col items-center gap-5 bg-stone-800 p-5 lg:py-8 lg:px-20">
       <div id="left-side" className="sm:w-1/2">
         <p className="text-3xl sm:text-4xl font-bold">
-          <span className="text-sky-400">Q</span>uick
-          <span className="text-sky-400"> U</span>nderstanding of
-          <span className="text-sky-400"> E</span>ssential
-          <span className="text-sky-400"> S</span>oftware
-          <span className="text-sky-400"> T</span>echnologies
+          <span className={blue}>Q</span>uick
+          <span className={blue}> U</span>nderstanding of
+          <span className={blue}> E</span>ssential
+          <span className={blue}> S</span>oftware
+          <span className={blue}> T</span>echnologies
         </p>
         <div className="mt-5">
           <p className="font-bold underline">How To Use</p>
