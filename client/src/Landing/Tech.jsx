@@ -2,7 +2,7 @@ import { techIcons } from "./techData";
 
 const Tech = () => {
   return (
-    <ul id="tech-icons" className="flex gap-3">
+    <ul id="tech-icons" className="flex gap-2">
       {techIcons.map(({ id, image, alt }) => (
         <li key={id}>
           <img
