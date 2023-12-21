@@ -4,7 +4,7 @@ import Landing from "./Landing";
 function App() {
   return (
     <div id="main" className="mx-auto max-w-7xl h-[100dvh] text-stone-200">
-      <Header />
+      {/* <Header /> */}
       <Landing />
       <Footer />
     </div>
