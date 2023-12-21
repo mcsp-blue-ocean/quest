@@ -9,7 +9,11 @@ const Social = () => {
             key={id}
             className="w-12 h-12 rounded-full bg-sky-800 p-1 border border-white/30"
           >
-            <img src={icon} alt={alt} />
+            <img
+              src={icon}
+              alt={alt}
+              style={{ width: "510%", aspectRatio: "1/1" }}
+            />
           </li>
         );
       })}
