@@ -25,11 +25,11 @@ const Example = () => {
       </div>
       <div id="right-side" className="sm:w-1/2">
         <p className="text-6xl font-bold underline mb-5">Examples</p>
-        <p className="mb-2 sm:w-3/4">
+        <p className="mb-2 max-w-prose">
           Crazy cool stuff about the examples and stuff. Crazy cool stuff about
           the examples and stuff.
         </p>
-        <p className="mb-5 sm:w-3/4">
+        <p className="mb-5 max-w-prose">
           Embark on the Ultimate Coding Quest with QUEST: Quick Understanding of
           Essential Software Technologies! Unleash the full potential of command
           line mastery, from Node.js to SQL, Git to React. Elevate your skills
