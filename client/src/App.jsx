@@ -14,7 +14,7 @@ function App() {
   return (
     <div id="main" className="mx-auto max-w-7xl h-[100dvh] text-stone-200">
       <Header onToggleModal={handleToggleModal} />
-      <Modal open={openModal} />
+      {openModal && <Modal />}
       <Landing />
       <Footer />
     </div>

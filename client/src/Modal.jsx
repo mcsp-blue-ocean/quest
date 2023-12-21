@@ -1,7 +1,4 @@
-const Modal = ({ open }) => {
-  if (!open) {
-    return null;
-  }
+const Modal = () => {
   return (
     <div className="popup">
       <div className="popup-inner">
