@@ -7,13 +7,10 @@ const AdminLoginTest = () => {
 
   const handleLogin = async ({ username, password }) => {
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_URL_PATH}/quest/login`,
-        {
-          username,
-          password,
-        }
-      );
+      const response = await axios.post("/api/login", {
+        username,
+        password,
+      });
       setToken(response.data.token);
     } catch (error) {
       console.error("Login failed:", error.response.data.error);

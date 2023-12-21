@@ -13,7 +13,6 @@ const client = new pg.Client({
   connectionString: DATABASE_URL,
 });
 
-
 await client.connect();
 
 const app = express();
@@ -27,7 +26,7 @@ const adminAccount = {
   passwordHash: ADMIN_HASH,
 };
 
-app.post("/quest/login", (req, res) => {
+app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
   console.log(username, password);
   // CONDITIONAL FOR LOGGING IN TO THE ADMIN ACCOUNT
