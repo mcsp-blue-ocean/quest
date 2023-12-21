@@ -12,7 +12,7 @@ const Social = () => {
             <img
               src={icon}
               alt={alt}
-              style={{ width: "510%", aspectRatio: "1/1" }}
+              style={{ width: "100%", aspectRatio: "1/1" }}
             />
           </li>
         );
