@@ -1,14 +1,10 @@
+import FooterNav from "./Footer/FooterNav";
 import Social from "./Footer/Social";
 
 const Footer = () => {
-  const navigation = ["Features", "Resources", "Blog", "Support"];
   return (
     <div className="flex flex-col items-center gap-10 px-20 py-10">
-      <ul className="flex gap-6 sm:gap-32 justify-center text-lg">
-        {navigation.map((link, index) => (
-          <li key={index}>{link}</li>
-        ))}
-      </ul>
+      <FooterNav />
       <hr className="w-full" />
       <Social />
       <p className="font-bold">
