@@ -1,6 +1,6 @@
 import Navigation from "./Header/Navigation";
-import logo from "./assets/header/logo.png?web";
-import login from "./assets/header/login.png?web";
+import logo from "./assets/header/logo.png";
+import login from "./assets/header/login.png";
 
 const Header = () => {
   return (
