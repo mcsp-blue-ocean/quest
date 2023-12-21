@@ -1,5 +1,5 @@
 const Navigation = () => {
-  const links = ["home", "commands", "code"];
+  const links = ["home", "commands"];
   return (
     <ul className="flex gap-3 text-lg">
       {links.map((link, index) => (
