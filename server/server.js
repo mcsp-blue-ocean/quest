@@ -26,9 +26,24 @@ const adminAccount = {
   passwordHash: ADMIN_HASH,
 };
 
+// TOKEN VERIFICATION FOR ADMIN RIGHTS TO ADD, UPDATE, DELETE
+const verifyToken = (req, res, next) => {
+  const token = req.headers.authorization;
+  if (!token) {
+    return res.status(401).json({ error: "Token not provided" });
+  }
+  jwt.verify(token, SECRET_KEY, (err, decoded) => {
+    if (err) {
+      return res.status(403).json({ error: "Invalid token" });
+    }
+    req.decoded = decoded;
+    next();
+  });
+};
+
 app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
-  console.log(username, password);
+
   // CONDITIONAL FOR LOGGING IN TO THE ADMIN ACCOUNT
   if (
     username === adminAccount.username &&
@@ -43,13 +58,18 @@ app.post("/api/login", (req, res) => {
   }
 });
 
+// ROUTES WITH ADMIN TOKEN VERIFICATION
+app.post("/api/commands", verifyToken, postCommands);
+app.patch("/api/commands/:id", verifyToken, editCommands);
+app.delete("/api/commands/:id", verifyToken, deleteCommands);
+
+// ROUTES
 app.get("/api/commands", getCommands);
 app.get("/api/commands/:id", getCommandsByCategoryId);
 app.get("/api/categories", getCategories);
-app.post("/api/commands", postCommands);
-app.patch("/api/commands/:id", editCommands);
-app.delete("/api/commands/:id", deleteCommands);
+//
 
+//FETCH COMMANDS
 async function getCommands(_, res, next) {
   try {
     const data = await client.query("SELECT * FROM commands");
@@ -82,6 +102,7 @@ async function getCommandsByCategoryId(req, res, next) {
   }
 }
 
+//ADMIN POST, PATCH, DELETE
 async function postCommands(req, res, next) {
   const { category_id, command_syntax, command_description } = req.body;
   try {
