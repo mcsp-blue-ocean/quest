@@ -1,14 +1,19 @@
-import discord from "../assets/footer/discord.png?web";
-import fb from "../assets/footer/fb.png?web";
-import li from "../assets/footer/li.png?web";
-import share from "../assets/footer/share.png?web";
-import x from "../assets/footer/x.png?web";
+import rss from "../assets/footer/rss.svg?web";
+import fb from "../assets/footer/fb.svg?web";
+import li from "../assets/footer/li.svg?web";
+import share from "../assets/footer/share.svg?web";
+import gh from "../assets/footer/gh.svg?web";
 
 export const socialIcons = [
   {
+    id: 3,
+    icon: share,
+    alt: "share",
+  },
+  {
     id: 0,
-    icon: discord,
-    alt: "discord",
+    icon: rss,
+    alt: "rss",
   },
   {
     id: 1,
@@ -21,13 +26,8 @@ export const socialIcons = [
     alt: "linked in",
   },
   {
-    id: 3,
-    icon: share,
-    alt: "share",
-  },
-  {
     id: 4,
-    icon: x,
-    alt: "share",
+    icon: gh,
+    alt: "github",
   },
 ];
