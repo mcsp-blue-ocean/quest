@@ -1,6 +1,6 @@
 import Example from "./Landing/Example";
 import How from "./Landing/How";
-import Modal from "./Landing/Modal";
+import AdminLoginComponent from "./AdminLoginComponent";
 import React, { useState } from "react";
 import Header from "./Header";
 
@@ -13,7 +13,7 @@ const Landing = () => {
   return (
     <>
       <Header onToggleModal={handleToggleModal} />
-      <Modal open={openModal} />
+      <AdminLoginComponent isOpen={openModal} />
       <How />
       <Example />
     </>
