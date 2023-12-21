@@ -46,7 +46,7 @@ const ModalLogin = ({ isOpen }) => {
           </form>
         </div>
       </div>
-      {/* {token && <p>Token: {token}</p>} */}
+      {token && <p>Token: {token}</p>}
     </div>
   );
 };
