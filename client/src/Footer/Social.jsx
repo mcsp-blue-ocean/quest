@@ -7,7 +7,7 @@ const Social = () => {
         return (
           <li
             key={id}
-            className="w-12 h-12 rounded-full bg-sky-800 p-1 border border-white/30"
+            className="w-12 h-12 rounded-full bg-sky-800"
           >
             <img
               src={icon}

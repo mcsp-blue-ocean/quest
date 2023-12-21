@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS commands;
 DROP TABLE IF EXISTS categories;
-DROP TABLE IF EXISTS chat_history;  
+DROP TABLE IF EXISTS chat_history;
+DROP TABLE IF EXISTS users;  
 
 CREATE TABLE commands(
     id SERIAL  NOT NULL  PRIMARY KEY,
@@ -25,3 +26,7 @@ CREATE TABLE chat_history(
     ai_message TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL);
 
+CREATE TABLE users(
+    id SERIAL NOT NULL PRIMARY KEY,
+    username VARCHAR(75) UNIQUE NOT NULL,
+    password_hash VARCHAR(75) TEXT NOT NULL);

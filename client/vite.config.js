@@ -5,7 +5,10 @@ import dotenv from "dotenv";
 
 dotenv.config({ path: "../.env" });
 
+<<<<<<< HEAD
 // https://vitejs.dev/config/
+=======
+>>>>>>> 5018ec421588d838929d454f77d1a68ccd583067
 export default defineConfig({
   plugins: [
     react(),
