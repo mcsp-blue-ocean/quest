@@ -20,6 +20,45 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// ROUTES
+app.get("/api/commands", getCommands);
+app.get("/api/commands/:id", getCommandsByCategoryId);
+app.get("/api/categories", getCategories);
+//
+
+//FETCH COMMANDS
+async function getCommands(_, res, next) {
+  try {
+    const data = await client.query("SELECT * FROM commands");
+    res.send(data.rows);
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function getCategories(_, res, next) {
+  try {
+    const data = await client.query("SELECT * FROM categories");
+
+    res.send(data.rows);
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function getCommandsByCategoryId(req, res, next) {
+  const id = Number(req.params.id);
+  try {
+    const data = await client.query(
+      "SELECT * FROM commands WHERE category_id = $1",
+      [id]
+    );
+    res.send(data.rows);
+  } catch (error) {
+    next(error);
+  }
+}
+
 // ADMIN LOGIN
 const adminAccount = {
   username: "admin",
@@ -62,45 +101,6 @@ app.post("/api/login", (req, res) => {
 app.post("/api/commands", verifyToken, postCommands);
 app.patch("/api/commands/:id", verifyToken, editCommands);
 app.delete("/api/commands/:id", verifyToken, deleteCommands);
-
-// ROUTES WITHOUT ADMIN REQUIREMENT
-app.get("/api/commands", getCommands);
-app.get("/api/commands/:id", getCommandsByCategoryId);
-app.get("/api/categories", getCategories);
-//
-
-//FETCH COMMANDS
-async function getCommands(_, res, next) {
-  try {
-    const data = await client.query("SELECT * FROM commands");
-    res.send(data.rows);
-  } catch (error) {
-    next(error);
-  }
-}
-
-async function getCategories(_, res, next) {
-  try {
-    const data = await client.query("SELECT * FROM categories");
-
-    res.send(data.rows);
-  } catch (error) {
-    next(error);
-  }
-}
-
-async function getCommandsByCategoryId(req, res, next) {
-  const id = Number(req.params.id);
-  try {
-    const data = await client.query(
-      "SELECT * FROM commands WHERE category_id = $1",
-      [id]
-    );
-    res.send(data.rows);
-  } catch (error) {
-    next(error);
-  }
-}
 
 //ADMIN POST, PATCH, DELETE
 async function postCommands(req, res, next) {
