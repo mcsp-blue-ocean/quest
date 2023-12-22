@@ -2,7 +2,6 @@ import { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Landing from "./Landing";
-import { useState } from "react";
 import Modal from "./Modal";
 
 function App() {
