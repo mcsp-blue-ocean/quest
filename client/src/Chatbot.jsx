@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ai from "./assets/chatbot.svg?web";
 
 const Chatbot = () => {
   // State variables
@@ -40,8 +41,14 @@ const Chatbot = () => {
 
   return (
     <div className="relative">
-      <div className="flex flex-col items-center gap-5 fixed bottom-0 right-0 bg-sky-700 m-5 p-2 rounded-lg shadow-xl">
-        <div className={`${!isOpen && "hidden" }`}>
+      <div
+        className={`${
+          !isOpen
+            ? "hidden"
+            : "flex flex-col items-center gap-5 fixed bottom-16 right-0 mr-5 mb-12 p-2 rounded-lg shadow-xl bg-sky-700"
+        }`}
+      >
+        <div>
           <div
             className={`flex flex-col gap-1 bg-sky-900 ${
               chatMessages.length !== 0 && `p-4`
@@ -64,10 +71,10 @@ const Chatbot = () => {
           >
             <input
               type="text"
-              placeholder="Type a QUESTion!"
+              placeholder="Ask"
               value={inputMessage}
               onChange={handleInputChange}
-              className="w-full rounded pl-2 bg-sky-200/60 placeholder:text-black"
+              className="w-full rounded px-1 bg-sky-200/60 placeholder:text-black text-black"
             />
             <button
               type="submit"
@@ -77,14 +84,16 @@ const Chatbot = () => {
             </button>
           </form>
         </div>
-        <button
-          onClick={toggleChatbot}
-          className={`${isOpen && "bg-stone-800 shadow rounded w-full"}`}
-        >
-          Chat
+        <button className={"bg-stone-800 shadow rounded w-full"}>
+          {isOpen && "Chat"}
         </button>
-        {/* Container for the chatbot content */}
       </div>
+      <img
+        src={ai}
+        alt="ai"
+        onClick={toggleChatbot}
+        className="fixed bottom-0 right-0 m-5 drop-shadow-xl cursor-pointer"
+      />
     </div>
   );
 };
