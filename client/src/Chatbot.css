@@ -1,0 +1,70 @@
+
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .chatbot-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .chatbot-content {
+    display: none;
+    position: absolute;
+    bottom: 50px;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .chatbot-container.open .chatbot-content {
+    display: block;
+  }
+
+  .chat-messages {
+    max-height: 150px;
+    overflow-y: auto;
+  }
+  
+  .user, .bot {
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    color: black
+  }
+  
+  .user {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .bot {
+    background-color: #eee;
+  }
+  
+  .user-input {
+    display: flex;
+    margin-top: 10px;
+    color: black
+  }
+  
+  input {
+    flex: 1;
+    padding: 5px;
+    margin-right: 5px;
+    color: black
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
