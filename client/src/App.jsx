@@ -1,8 +1,8 @@
+import { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Landing from "./Landing";
 import Modal from "./Modal";
-import React, { useState } from "react";
 
 function App() {
   const [openModal, setOpenModal] = useState(false);
