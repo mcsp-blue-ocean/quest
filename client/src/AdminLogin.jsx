@@ -1,18 +1,14 @@
 import axios from "axios";
 import React, { useState } from "react";
-import Modal from "./Modal.jsx";
 
-const ModalLogin = ({ isOpen }) => {
+const AdminLogin = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [token, setToken] = useState(null);
-  if (!isOpen) {
-    return null;
-  }
 
   const handleLogin = async (event) => {
     try {
       event.preventDefault();
-      const username = event.target.username.value;
-      const password = event.target.password.value;
       const response = await axios.post("/api/login", {
         username,
         password,
@@ -25,7 +21,6 @@ const ModalLogin = ({ isOpen }) => {
 
   return (
     <div>
-      {/* <h2>Admin Login Test</h2> */}
       <div className="popup">
         <div className="popup-inner">
           <h2 className="text-center">Login</h2>
@@ -33,12 +28,24 @@ const ModalLogin = ({ isOpen }) => {
           <form onSubmit={handleLogin}>
             <div>
               <label htmlFor="username">Username:</label>
-              <input type="text" id="username" name="username" />
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
             </div>
             <br />
             <div>
               <label htmlFor="password">Password:</label>
-              <input type="password" id="password" name="password" />
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
             <br />
             <div>
@@ -52,4 +59,4 @@ const ModalLogin = ({ isOpen }) => {
   );
 };
 
-export default ModalLogin;
+export default AdminLogin;
