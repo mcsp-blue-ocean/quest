@@ -23,7 +23,7 @@ const Chatbot = () => {
     if (inputMessage.trim() !== "") {
       setChatMessages((prevMessages) => [
         ...prevMessages,
-        { text: inputMessage, type: "user" },
+        { user: inputMessage, type: "user" },
       ]);
 
       // *** BLAISE CHATBOT LOGIC INPUT *** ----------------------------------------------------------
@@ -31,7 +31,7 @@ const Chatbot = () => {
       // Placeholder for Blaise chatbox logic
       setChatMessages((prevMessages) => [
         ...prevMessages,
-        { text: "Bot response: Your message is received!", type: "bot" },
+        { bot: "Bot response: Your message is received!", type: "bot" },
       ]);
       // *** END OF BLAISE CHATBOX LOGIC *** ------------------------------------------------------------
       setInputMessage("");
@@ -39,34 +39,51 @@ const Chatbot = () => {
   };
 
   return (
-    // If isOpen is true, it will evaluate to "open". If false, it will evaluate to an empty string.
-    // If isOpen is true, the resulting class will be "chatbot-container open". If false, the class name will be "chatbot-container"
-    // If chatbot is open, the open class will be added. If closed, it will be only chatbot-container.
-    <div className={`chatbot-container ${isOpen ? "open" : ""}`}>
-      <button className="chatbot-button" onClick={toggleChatbot}>
-        Chat
-      </button>
-      {/* Container for the chatbot content */}
-      <div className="chatbot-content">
-        {/* Container for displaying chat messages */}
-        <div className="chat-messages">
-          {/* Mapping through chat messages and rendering them */}
-          {chatMessages.map((message, index) => (
-            <div key={index} className={message.type}>
-              {message.text}
-            </div>
-          ))}
+    <div className="relative">
+      <div className="flex flex-col items-center gap-5 fixed bottom-0 right-0 bg-sky-700 m-5 p-2 rounded-lg shadow-xl">
+        <div className={`${!isOpen ? "hidden" : ""}`}>
+          <div
+            className={`flex flex-col gap-1 bg-sky-900 ${
+              chatMessages.length !== 0 && `p-4`
+            } rounded`}
+          >
+            {chatMessages.map((message) => (
+              <>
+                <div className="bg-sky-300 text-stone-800 rounded px-1 shadow-md">
+                  {message.user}
+                </div>
+                <div className="bg-sky-950 rounded px-1 shadow-md">
+                  {message.bot}
+                </div>
+              </>
+            ))}
+          </div>
+          <form
+            onSubmit={handleSendMessage}
+            className="flex justify-between gap-2 pt-5"
+          >
+            <input
+              type="text"
+              placeholder="Type a QUESTion!"
+              value={inputMessage}
+              onChange={handleInputChange}
+              className="w-full rounded pl-2 bg-sky-200/60 placeholder:text-black"
+            />
+            <button
+              type="submit"
+              className="bg-stone-800 rounded px-2 shadow-md"
+            >
+              Send
+            </button>
+          </form>
         </div>
-        {/* Container for user input (input field and send button) */}
-        <form onSubmit={handleSendMessage}>
-          <input
-            type="text"
-            placeholder="Type a QUESTion!"
-            value={inputMessage}
-            onChange={handleInputChange}
-          />
-          <button type="submit">Send</button>
-        </form>
+        <button
+          onClick={toggleChatbot}
+          className={`${!isOpen ? "" : "bg-stone-800 shadow rounded w-full"}`}
+        >
+          Chat
+        </button>
+        {/* Container for the chatbot content */}
       </div>
     </div>
   );
