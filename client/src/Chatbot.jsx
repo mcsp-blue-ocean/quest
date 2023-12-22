@@ -7,34 +7,30 @@ const Chatbot = () => {
   const [inputMessage, setInputMessage] = useState("");
   const [chatMessages, setChatMessages] = useState([]);
 
-  // Function that will toggle chatbox visibility
   const toggleChatbot = () => {
     setIsOpen(!isOpen);
   };
 
-  // Function to handle input field changes (from the user)
   const handleInputChange = (e) => {
     setInputMessage(e.target.value);
   };
 
-  // Function to handle sending a message
   const handleSendMessage = (e) => {
     e.preventDefault();
-    // Used .trim to remove whitespace from beginning and end of a string
     if (inputMessage.trim() !== "") {
       setChatMessages((prevMessages) => [
         ...prevMessages,
         { user: inputMessage, type: "user" },
       ]);
 
-      // *** BLAISE CHATBOT LOGIC INPUT *** ----------------------------------------------------------
+      // *** BLAISE CHATBOT LOGIC INPUT ***
 
       // Placeholder for Blaise chatbox logic
       setChatMessages((prevMessages) => [
         ...prevMessages,
         { bot: "Bot response: Your message is received!", type: "bot" },
       ]);
-      // *** END OF BLAISE CHATBOX LOGIC *** ------------------------------------------------------------
+      // *** END OF BLAISE CHATBOX LOGIC ***
       setInputMessage("");
     }
   };
