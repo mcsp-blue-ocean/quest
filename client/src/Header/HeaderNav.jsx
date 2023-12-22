@@ -1,11 +1,17 @@
+import { Link } from "react-router-dom";
+
 const HeaderNav = () => {
-  const links = ["Home", "Commands"];
   return (
-    <ul className="flex gap-3 text-lg font-bold">
-      {links.map((link, index) => (
-        <li key={index}>{link}</li>
-      ))}
-    </ul>
+    <>
+      <ul className="flex gap-3 text-lg font-bold">
+        <li>
+          <Link to="/home"> Home</Link>
+        </li>
+        <li>
+          <Link to="/categories"> Commands</Link>
+        </li>
+      </ul>
+    </>
   );
 };
 
