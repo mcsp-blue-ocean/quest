@@ -79,7 +79,7 @@ const Chatbot = () => {
         </div>
         <button
           onClick={toggleChatbot}
-          className={`${!isOpen ? "" : "bg-stone-800 shadow rounded w-full"}`}
+          className={`${isOpen && "bg-stone-800 shadow rounded w-full"}`}
         >
           Chat
         </button>
