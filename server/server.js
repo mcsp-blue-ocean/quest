@@ -28,7 +28,7 @@ const adminAccount = {
 
 // TOKEN VERIFICATION FOR ADMIN RIGHTS TO ADD, UPDATE, DELETE
 const verifyToken = (req, res, next) => {
-  const token = req.headers.authorization;
+  const token = req.headers.authorization; //Token has been save to headers from AdminLogin.jsx
   if (!token) {
     return res.status(401).json({ error: "Token not provided" });
   }
@@ -36,7 +36,7 @@ const verifyToken = (req, res, next) => {
     if (err) {
       return res.status(403).json({ error: "Invalid token" });
     }
-    req.decoded = decoded;
+    req.decoded = decoded; //if there is a token, it moves on to the next function
     next();
   });
 };
@@ -63,7 +63,7 @@ app.post("/api/commands", verifyToken, postCommands);
 app.patch("/api/commands/:id", verifyToken, editCommands);
 app.delete("/api/commands/:id", verifyToken, deleteCommands);
 
-// ROUTES
+// ROUTES WITHOUT ADMIN REQUIREMENT
 app.get("/api/commands", getCommands);
 app.get("/api/commands/:id", getCommandsByCategoryId);
 app.get("/api/categories", getCategories);

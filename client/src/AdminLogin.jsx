@@ -5,6 +5,7 @@ const AdminLogin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useState(null);
+  const [accessMessage, setAccessMessage] = useState(null);
 
   const handleLogin = async (event) => {
     try {
@@ -13,9 +14,21 @@ const AdminLogin = () => {
         username,
         password,
       });
-      setToken(response.data.token);
+
+      const newToken = response.data.token;
+
+      // TOKEN SAVED TO LOCAL STORAGE AND SET AS COMPONENT STATE
+      localStorage.setItem("SavedToken", newToken);
+      setToken(newToken);
+
+      // SET AXIOS DEFAULT HEADERS ONLY IF TOKEN EXISTS
+      if (newToken) {
+        axios.defaults.headers.common["Authorization"] = `Bearer ${newToken}`;
+        setAccessMessage("Access Granted!");
+      }
     } catch (error) {
       console.error("Login failed:", error.response.data.error);
+      setAccessMessage("Access Denied. Invalid credentials!");
     }
   };
 
@@ -54,7 +67,11 @@ const AdminLogin = () => {
           </form>
         </div>
       </div>
-      {token && <p>Token: {token}</p>}
+      {accessMessage && (
+        <p className={token ? "access-granted" : "access-denied"}>
+          {accessMessage}
+        </p>
+      )}
     </div>
   );
 };
