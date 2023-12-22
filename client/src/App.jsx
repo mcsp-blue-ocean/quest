@@ -4,6 +4,8 @@ import Footer from "./Footer";
 import Landing from "./Landing";
 import AdminLogin from "./AdminLogin";
 
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 function App() {
   const [openModal, setOpenModal] = useState(false);
 
