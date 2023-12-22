@@ -1,9 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-<<<<<<< HEAD
 import Modal from "./Modal.jsx";
-=======
->>>>>>> 6545037106539ced8f48ac131b32d8e74c0dfc73
 
 const ModalLogin = ({ isOpen }) => {
   const [token, setToken] = useState(null);
@@ -28,10 +25,6 @@ const ModalLogin = ({ isOpen }) => {
 
   return (
     <div>
-<<<<<<< HEAD
-      <h2>Admin Login Test</h2>
-      <Modal onLogin={handleLogin} />
-=======
       {/* <h2>Admin Login Test</h2> */}
       <div className="popup">
         <div className="popup-inner">
@@ -54,7 +47,6 @@ const ModalLogin = ({ isOpen }) => {
           </form>
         </div>
       </div>
->>>>>>> 6545037106539ced8f48ac131b32d8e74c0dfc73
       {token && <p>Token: {token}</p>}
     </div>
   );
