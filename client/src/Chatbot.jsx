@@ -41,7 +41,7 @@ const Chatbot = () => {
   return (
     <div className="relative">
       <div className="flex flex-col items-center gap-5 fixed bottom-0 right-0 bg-sky-700 m-5 p-2 rounded-lg shadow-xl">
-        <div className={`${!isOpen ? "hidden" : ""}`}>
+        <div className={`${!isOpen && "hidden" }`}>
           <div
             className={`flex flex-col gap-1 bg-sky-900 ${
               chatMessages.length !== 0 && `p-4`
