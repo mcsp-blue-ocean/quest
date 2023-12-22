@@ -45,48 +45,40 @@ const Chatbot = () => {
         className={`${
           !isOpen
             ? "hidden"
-            : "flex flex-col items-center gap-5 fixed bottom-16 right-0 mr-5 mb-12 p-2 rounded-lg shadow-xl bg-sky-700"
+            : "flex flex-col items-center fixed bottom-28 right-6 p-2 rounded-lg shadow-xl bg-sky-700"
         }`}
       >
-        <div>
-          <div
-            className={`flex flex-col gap-1 bg-sky-900 ${
-              chatMessages.length !== 0 && `p-4`
-            } rounded`}
-          >
-            {chatMessages.map((message) => (
-              <>
-                <div className="bg-sky-300 text-stone-800 rounded px-1 shadow-md">
-                  {message.user}
-                </div>
-                <div className="bg-sky-950 rounded px-1 shadow-md">
-                  {message.bot}
-                </div>
-              </>
-            ))}
-          </div>
-          <form
-            onSubmit={handleSendMessage}
-            className="flex justify-between gap-2 pt-5"
-          >
-            <input
-              type="text"
-              placeholder="Ask"
-              value={inputMessage}
-              onChange={handleInputChange}
-              className="w-full rounded px-1 bg-sky-200/60 placeholder:text-black text-black"
-            />
-            <button
-              type="submit"
-              className="bg-stone-800 rounded px-2 shadow-md"
-            >
-              Send
-            </button>
-          </form>
+        <div
+          className={`flex flex-col gap-2 bg-sky-900 ${
+            chatMessages.length !== 0 && `p-4`
+          } rounded`}
+        >
+          {chatMessages.map(({ user, bot }, index) => (
+            <ul key={index}>
+              <li className="bg-sky-300 text-stone-800 rounded px-1 shadow-md">
+                {user}
+              </li>
+              <li className="bg-sky-950 rounded px-1 shadow-md">{bot}</li>
+            </ul>
+          ))}
         </div>
-        <button className={"bg-stone-800 shadow rounded w-full"}>
-          {isOpen && "Chat"}
-        </button>
+        <form
+          onSubmit={handleSendMessage}
+          className={`flex justify-between gap-2 w-full ${
+            chatMessages.length !== 0 && "mt-3"
+          }`}
+        >
+          <input
+            type="text"
+            placeholder="Ask"
+            value={inputMessage}
+            onChange={handleInputChange}
+            className="w-full rounded p-1 bg-sky-200/70 placeholder:text-black text-black"
+          />
+          <button type="submit" className="bg-stone-800 rounded p-1 shadow-md">
+            Send
+          </button>
+        </form>
       </div>
       <img
         src={ai}
