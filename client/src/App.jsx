@@ -13,7 +13,9 @@ function App() {
 
   return (
     <div id="main" className="mx-auto max-w-7xl h-[100dvh] text-stone-200">
-      <Header />
+      {/* <Header /> */}
+      <Header onToggleModal={handleToggleModal} />
+      {openModal && <Modal />}
       <Landing />
       <Footer />
     </div>
