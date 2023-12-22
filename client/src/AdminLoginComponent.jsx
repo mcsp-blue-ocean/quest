@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import AdminLogin from "./AdminLogin.jsx";
+import Modal from "./Modal.jsx";
 
 const AdminLoginTest = () => {
   const [token, setToken] = useState(null);
@@ -20,7 +20,7 @@ const AdminLoginTest = () => {
   return (
     <div>
       <h2>Admin Login Test</h2>
-      <AdminLogin onLogin={handleLogin} />
+      <Modal onLogin={handleLogin} />
       {token && <p>Token: {token}</p>}
     </div>
   );
