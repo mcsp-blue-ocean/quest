@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './Chatbot.css';
 
 const Chatbot = () => {
   // State variables
