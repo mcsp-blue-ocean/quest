@@ -20,7 +20,7 @@ const Chatbot = () => {
     if (inputMessage.trim() !== "") {
       setChatMessages((prevMessages) => [
         ...prevMessages,
-        { user: inputMessage, type: "user" },
+        { user: `User: ${inputMessage}`, type: "user" },
       ]);
 
       // *** BLAISE CHATBOT LOGIC INPUT ***
@@ -28,7 +28,7 @@ const Chatbot = () => {
       // Placeholder for Blaise chatbox logic
       setChatMessages((prevMessages) => [
         ...prevMessages,
-        { bot: "Bot response: Your message is received!", type: "bot" },
+        { bot: "Bot: What a ridiculous question to ask!", type: "bot" },
       ]);
       // *** END OF BLAISE CHATBOX LOGIC ***
       setInputMessage("");
