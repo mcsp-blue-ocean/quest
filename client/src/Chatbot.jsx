@@ -41,7 +41,7 @@ const Chatbot = () => {
         className={`${
           !isOpen
             ? "hidden"
-            : "flex flex-col items-center fixed bottom-28 right-6 p-2 rounded-lg shadow-xl bg-sky-700"
+            : "flex flex-col items-center fixed bottom-28 right-6 p-2 rounded-lg shadow-xl bg-sky-700 border border-white/50"
         }`}
       >
         <div
