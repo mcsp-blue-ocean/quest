@@ -22,6 +22,7 @@ app.get("/api/categories", getCategories);
 app.post("/api/commands", postCommands);
 app.patch("/api/commands/:id", editCommands);
 app.delete("/api/commands/:id", deleteCommands);
+app.post("/api/chat", postChat);
 
 async function getCommands(_, res, next) {
   try {
@@ -101,6 +102,33 @@ async function deleteCommands(req, res, next) {
       res.sendStatus(404);
     } else {
       res.send(data.rows[0]);
+    }
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function postChat(req, res, next) {
+  const { message } = req.body;
+  try {
+    const response = await fetch(
+      "https://python-backend-quest.onrender.com/api/chat",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          role: "user",
+          content: message,
+        }),
+      }
+    );
+    const messageData = await response.json();
+    if (messageData.role && messageData.content) {
+      res.status(201).json(messageData);
+    } else {
+      res.status(500).json({ error: "Invalid message format from chat API" });
     }
   } catch (error) {
     next(error);
