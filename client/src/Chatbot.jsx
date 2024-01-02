@@ -1,5 +1,8 @@
 import { useState } from "react";
 import ai from "./assets/chatbot.svg?web";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const Chatbot = () => {
   // State variables
@@ -42,7 +45,7 @@ const Chatbot = () => {
       //console.log("Sending payload to server:", payload);
 
       try {
-        const response = await fetch("http://localhost:3000/api/chat", {
+        const response = await fetch(`${process.env.BASE_URL}/api/chat`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
