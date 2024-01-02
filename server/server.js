@@ -15,7 +15,6 @@ const client = new pg.Client({
 
 await client.connect();
 
-
 const app = express();
 
 app.use(cors());
@@ -28,7 +27,6 @@ app.post("/api/commands", postCommands);
 app.patch("/api/commands/:id", editCommands);
 app.delete("/api/commands/:id", deleteCommands);
 app.post("/api/chat", postChat);
-
 
 async function getCommands(_, res, next) {
   try {
@@ -43,7 +41,9 @@ async function getCommands(_, res, next) {
 
 async function getCategories(_, res, next) {
   try {
-    const data = await client.query("SELECT * FROM categories");
+    const data = await client.query(
+      "SELECT * FROM categories ORDER BY category ASC"
+    );
 
     res.send(data.rows);
   } catch (error) {
@@ -158,7 +158,6 @@ app.post("/api/login", (req, res) => {
 app.post("/api/commands", verifyToken, postCommands);
 app.patch("/api/commands/:id", verifyToken, editCommands);
 app.delete("/api/commands/:id", verifyToken, deleteCommands);
-
 
 async function postChat(req, res, next) {
   const { message, messages } = req.body;
