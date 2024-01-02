@@ -3,7 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Landing from "./Landing";
 import Chatbot from "./Chatbot";
-import Modal from "./Modal";
+import Admin from "./Admin";
 
 import { Routes, Route } from "react-router-dom";
 import CommandCategories from "./Commands/CommandCategories";
@@ -52,10 +52,10 @@ function App() {
 
   return (
     <div id="main" className="mx-auto max-w-7xl h-dvh text-stone-200">
-      {openModal && <Modal />}
-
+    
       <Header onToggleModal={handleToggleModal} />
       <Routes>
+      <Route path="/admin" Component={Admin} />
         <Route path="/home" Component={Landing} />
         <Route
           path="/categories"
