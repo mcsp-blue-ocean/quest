@@ -122,7 +122,7 @@ async function postChat(req, res, next) {
     messages: messages,
   };
 
-  console.log("Sending payload to AI API:", payload); // This will print the payload
+  //console.log("Sending payload to AI API:", payload);
 
   try {
     const response = await fetch(AI_API, {

@@ -34,11 +34,11 @@ const Chatbot = () => {
         message: inputMessage,
         messages: updatedChatMessages.map((msg) => ({
           role: msg.type,
-          content: msg.type === "user" ? msg.user.slice(6) : msg.bot.slice(11), // Adjust the slice accordingly
+          content: msg.type === "user" ? msg.user.slice(4) : msg.bot.slice(4),
         })),
       };
 
-      console.log("Sending payload to server:", payload);
+      //console.log("Sending payload to server:", payload);
 
       try {
         const response = await fetch("http://localhost:3000/api/chat", {
@@ -56,8 +56,8 @@ const Chatbot = () => {
         // Inside the handleSendMessage function, after receiving the response from the server
         const responseData = await response.json();
         const botMessage = {
-          bot: `🤖: ${responseData.message.content}`, // Use the content from the response
-          type: "assistant", // This should be 'assistant'
+          bot: `🤖: ${responseData.message.content}`,
+          type: "assistant",
         };
 
         // Update the state with the bot's response
