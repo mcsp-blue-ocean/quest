@@ -15,22 +15,43 @@ const Chatbot = () => {
     setInputMessage(e.target.value);
   };
 
-  const handleSendMessage = (e) => {
+  const handleSendMessage = async (e) => {
     e.preventDefault();
     if (inputMessage.trim() !== "") {
-      setChatMessages((prevMessages) => [
-        ...prevMessages,
-        { user: `User: ${inputMessage}`, type: "user" },
-      ]);
+      const userMessage = { user: `User: ${inputMessage}`, type: "user" };
+      setChatMessages((prevMessages) => [...prevMessages, userMessage]);
 
-      // *** BLAISE CHATBOT LOGIC INPUT ***
+      try {
+        const response = await fetch("http://localhost:3000/api/chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: inputMessage,
+            messages: chatMessages
+              .filter((msg) => msg.type === "user")
+              .map((msg) => ({
+                role: msg.type,
+                content: msg.user.slice(6),
+              })),
+          }),
+        });
 
-      // Placeholder for Blaise chatbox logic
-      setChatMessages((prevMessages) => [
-        ...prevMessages,
-        { bot: "Bot: What a ridiculous question to ask!", type: "bot" },
-      ]);
-      // *** END OF BLAISE CHATBOX LOGIC ***
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+        const botMessage = {
+          bot: `Bot: ${responseData.message}`, // Use the message field directly
+          type: "assistant",
+        };
+        setChatMessages((prevMessages) => [...prevMessages, botMessage]);
+      } catch (error) {
+        console.error("Failed to send message:", error);
+      }
+
       setInputMessage("");
     }
   };
