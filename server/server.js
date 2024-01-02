@@ -1,6 +1,7 @@
 import express from "express";
 import pg from "pg";
 import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config({ path: "../.env" });
 
@@ -15,6 +16,9 @@ await client.connect();
 const app = express();
 
 app.use(express.json());
+
+// Enable All CORS Requests for development purposes
+app.use(cors());
 
 app.get("/api/commands", getCommands);
 app.get("/api/commands/:id", getCommandsByCategoryId);
@@ -112,6 +116,14 @@ async function deleteCommands(req, res, next) {
 
 async function postChat(req, res, next) {
   const { message, messages } = req.body;
+  const payload = {
+    role: "user",
+    content: message,
+    messages: messages,
+  };
+
+  console.log("Sending payload to AI API:", payload); // This will print the payload
+
   try {
     const response = await fetch(AI_API, {
       method: "POST",
@@ -129,11 +141,12 @@ async function postChat(req, res, next) {
     const contentType = response.headers.get("content-type");
     if (contentType && contentType.includes("application/json")) {
       const messageData = await response.json();
-      res.status(201).json(messageData);
+      res
+        .status(201)
+        .json({ message: { content: messageData.message, role: "assistant" } });
     } else {
-      // If response is not JSON, assume it's plain text and send it as JSON
       const text = await response.text();
-      res.status(200).json({ message: text });
+      res.status(200).json({ message: { content: text, role: "assistant" } });
     }
   } catch (error) {
     console.error("Error in postChat:", error);

@@ -18,8 +18,27 @@ const Chatbot = () => {
   const handleSendMessage = async (e) => {
     e.preventDefault();
     if (inputMessage.trim() !== "") {
-      const userMessage = { user: `User: ${inputMessage}`, type: "user" };
-      setChatMessages((prevMessages) => [...prevMessages, userMessage]);
+      const newUserMessage = {
+        user: `🤔: ${inputMessage}`,
+        type: "user",
+      };
+
+      // Create a new array that includes the new user message
+      const updatedChatMessages = [...chatMessages, newUserMessage];
+
+      // Update the state with the new user message
+      setChatMessages(updatedChatMessages);
+
+      // Construct the payload using the updatedChatMessages array
+      const payload = {
+        message: inputMessage,
+        messages: updatedChatMessages.map((msg) => ({
+          role: msg.type,
+          content: msg.type === "user" ? msg.user.slice(6) : msg.bot.slice(11), // Adjust the slice accordingly
+        })),
+      };
+
+      console.log("Sending payload to server:", payload);
 
       try {
         const response = await fetch("http://localhost:3000/api/chat", {
@@ -27,31 +46,27 @@ const Chatbot = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            message: inputMessage,
-            messages: chatMessages
-              .filter((msg) => msg.type === "user")
-              .map((msg) => ({
-                role: msg.type,
-                content: msg.user.slice(6),
-              })),
-          }),
+          body: JSON.stringify(payload),
         });
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
 
+        // Inside the handleSendMessage function, after receiving the response from the server
         const responseData = await response.json();
         const botMessage = {
-          bot: `Bot: ${responseData.message}`, // Use the message field directly
-          type: "assistant",
+          bot: `🤖: ${responseData.message.content}`, // Use the content from the response
+          type: "assistant", // This should be 'assistant'
         };
+
+        // Update the state with the bot's response
         setChatMessages((prevMessages) => [...prevMessages, botMessage]);
       } catch (error) {
         console.error("Failed to send message:", error);
       }
 
+      // Clear the input field
       setInputMessage("");
     }
   };
@@ -70,12 +85,22 @@ const Chatbot = () => {
             chatMessages.length !== 0 && `p-4`
           } rounded`}
         >
-          {chatMessages.map(({ user, bot }, index) => (
+          {chatMessages.map((msg, index) => (
             <ul key={index}>
-              <li className="bg-sky-300 text-stone-800 rounded px-1 shadow-md">
-                {user}
+              <li
+                className={`bg-sky-300 text-stone-800 rounded px-1 shadow-md ${
+                  msg.type === "user" ? "" : "hidden"
+                }`}
+              >
+                {msg.user}
               </li>
-              <li className="bg-sky-950 rounded px-1 shadow-md">{bot}</li>
+              <li
+                className={`bg-sky-950 rounded px-1 shadow-md ${
+                  msg.type === "assistant" ? "" : "hidden"
+                }`}
+              >
+                {msg.bot}
+              </li>
             </ul>
           ))}
         </div>
