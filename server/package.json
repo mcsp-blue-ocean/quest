@@ -3,14 +3,29 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "test": "ava",
     "dev": "node --watch server.js",
     "start": "node server.js"
   },
+  "ava": {
+    "files": [
+      "server.test.js"
+    ],
+    "require": [
+      "esm"
+    ],
+    "babel": "inherit"
+  },
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "colors": "^1.4.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "supertest": "^6.3.3",
+    "ava": "6.0.1"
   }
 }

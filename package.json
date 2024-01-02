@@ -7,17 +7,26 @@
     "client"
   ],
   "scripts": {
-    "dev": "concurrently \"npm:dev:*\"",
-    "dev:client": "npm run dev --workspace=client",
-    "dev:server": "npm run dev --workspace=server",
-    "lint": "prettier . --write"
+    "test": "ava"
   },
   "devDependencies": {
+    "ava": "^6.0.1",
     "concurrently": "^8.2.2",
+    "esm": "^3.2.25",
     "prettier": "^3.1.1",
-    "react-router-dom": "^6.21.1"
+    "react-router-dom": "^6.21.1",
+    "supertest": "^6.3.3"
   },
   "dependencies": {
     "react-router-dom": "^6.21.1"
+  },
+  "ava": {
+    "files": [
+      "tests/**/*.js"
+    ],
+    "babel": "inherit"
+  },
+  "scripts": {
+    "test": "ava"
   }
 }
