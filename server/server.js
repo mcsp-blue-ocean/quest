@@ -25,7 +25,9 @@ app.delete("/api/commands/:id", deleteCommands);
 
 async function getCommands(_, res, next) {
   try {
-    const data = await client.query("SELECT * FROM commands");
+    const data = await client.query(
+      "SELECT * FROM commands ORDER BY command_syntax ASC"
+    );
     res.send(data.rows);
   } catch (error) {
     next(error);
@@ -46,7 +48,7 @@ async function getCommandsByCategoryId(req, res, next) {
   const id = Number(req.params.id);
   try {
     const data = await client.query(
-      "SELECT * FROM commands WHERE category_id = $1",
+      "SELECT * FROM commands WHERE category_id = $1 ORDER BY command_syntax ASC",
       [id]
     );
     res.send(data.rows);
