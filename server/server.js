@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 dotenv.config({ path: "../.env" });
 
-const { PORT, DATABASE_URL } = process.env;
+const { PORT, DATABASE_URL, AI_API } = process.env;
 
 const client = new pg.Client({
   connectionString: DATABASE_URL,
@@ -109,28 +109,32 @@ async function deleteCommands(req, res, next) {
 }
 
 async function postChat(req, res, next) {
-  const { message } = req.body;
+  const { message, messages } = req.body;
   try {
-    const response = await fetch(
-      "https://python-backend-quest.onrender.com/api/chat",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          role: "user",
-          content: message,
-        }),
-      }
-    );
-    const messageData = await response.json();
-    if (messageData.role && messageData.content) {
+    const response = await fetch(AI_API, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        role: "user",
+        content: message,
+        messages: messages,
+      }),
+    });
+
+    // Check if the response is JSON
+    const contentType = response.headers.get("content-type");
+    if (contentType && contentType.includes("application/json")) {
+      const messageData = await response.json();
       res.status(201).json(messageData);
     } else {
-      res.status(500).json({ error: "Invalid message format from chat API" });
+      // If response is not JSON, assume it's plain text and send it as JSON
+      const text = await response.text();
+      res.status(200).json({ message: text });
     }
   } catch (error) {
+    console.error("Error in postChat:", error);
     next(error);
   }
 }
