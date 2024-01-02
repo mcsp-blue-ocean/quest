@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import Landing from "./Landing";
 import AdminLogin from "./AdminLogin";
 import Chatbot from "./Chatbot";
-import Modal from "./Modal"; // Assuming you have a Modal component
+import ModalLogin from "./ModalLogin.jsx"; // Assuming you have a Modal component
 import { Routes, Route } from "react-router-dom";
 import CommandCategories from "./Commands/CommandCategories";
 import SelectedCommands from "./Commands/SelectedCommands.jsx";
@@ -20,6 +20,7 @@ function App() {
   const [openModal, setOpenModal] = useState(false);
 
   const handleToggleModal = () => {
+    console.log("clicked admin")
     setOpenModal(!openModal);
   };
   const fetchCategories = () => {
@@ -52,17 +53,16 @@ function App() {
 
   return (
     <div id="main" className="mx-auto max-w-7xl h-dvh text-stone-200">
-      <Router>
-        <Header onToggleModal={handleToggleModal} />
+      <Header onToggleModal={handleToggleModal} />
 
-        <Routes>
-          <Route path="/home" Component={Landing} />
-          <Route path="*" Component={Landing} />
-        </Routes>
-      </Router>
+      <Routes>
+        <Route path="/admin" Component={AdminLogin} />
+        <Route path="/home" Component={Landing} />
+        <Route path="*" Component={Landing} />
+      </Routes>
 
       <Footer />
-      {openModal && <Modal />}
+      
     </div>
   );
 }
