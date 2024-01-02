@@ -15,6 +15,7 @@ const Chatbot = () => {
     setInputMessage(e.target.value);
   };
 
+  //chatbot UI coauthed by Greg and Mitch
   const handleSendMessage = async (e) => {
     e.preventDefault();
     if (inputMessage.trim() !== "") {
