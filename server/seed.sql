@@ -1,3 +1,4 @@
+-- SQLBook: Code
 
 INSERT INTO categories(category,parent_category) VALUES 
 ('React','Front-End Development'),

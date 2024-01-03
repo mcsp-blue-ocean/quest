@@ -8,7 +8,7 @@ const How = () => {
     <img src={computerImg} alt="computer" className="w-3/4 mx-auto" />
   );
   return (
-    <div className="flex sm:flex-row flex-col items-center gap-5 bg-stone-800 p-5 lg:py-8 lg:px-20">
+    <div className="flex sm:flex-row flex-col items-center bg-sky-950 p-5 lg:px-10 gap-5">
       <div id="left-side" className="sm:w-1/2">
         <p className="max-w-prose text-3xl sm:text-4xl font-bold">
           <span className={blue}>Q</span>uick

@@ -20,9 +20,9 @@ const Example = () => {
   );
 
   return (
-    <div className="flex sm:flex-row flex-col items-center bg-sky-800 p-5 lg:py-8 lg:px-20 gap-5">
+    <div className="flex sm:flex-row flex-col items-center bg-sky-800 shadow-xl p-5 lg:px-20 gap-5">
       <div id="left-side" className="sm:w-1/2">
-        <Window color={"bg-stone-800"}>{examples}</Window>
+        <Window color={"bg-stone-800/80"}>{examples}</Window>
       </div>
       <div id="right-side" className="sm:w-1/2">
         <p className="text-6xl font-bold underline mb-5">Examples</p>

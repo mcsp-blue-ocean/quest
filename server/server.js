@@ -1,14 +1,19 @@
 import express from "express";
 import pg from "pg";
 import dotenv from "dotenv";
-import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import cors from "cors";
 
 dotenv.config({ path: new URL("../.env", import.meta.url).pathname });
 
-const { PORT, DATABASE_URL, SECRET_KEY, ADMIN_HASH } = process.env;
-console.log("DATABASE_URL:", DATABASE_URL);
+const {
+  PORT,
+  DATABASE_URL,
+  AI_API,
+  SECRET_KEY,
+  ADMIN_PASSWORD,
+  ADMIN_USERNAME,
+} = process.env;
 
 const client = new pg.Client({
   connectionString: DATABASE_URL,
@@ -21,7 +26,9 @@ const app = express();
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 
-// ROUTES
+// Enable All CORS Requests for development purposes
+app.use(cors());
+
 app.get("/api/commands", getCommands);
 app.get("/api/commands/:id", getCommandsByCategoryId);
 app.get("/api/categories", getCategories);
@@ -74,20 +81,20 @@ const adminAccount = {
   passwordHash: ADMIN_HASH, //(Scott just made this an environmental variable, need to figure out how to get it to work)
 };
 
-// TOKEN VERIFICATION FOR ADMIN RIGHTS TO ADD, UPDATE, DELETE
-const verifyToken = (req, res, next) => {
-  const token = req.headers.authorization; //Token has been save to headers from AdminLogin.jsx
-  if (!token) {
-    return res.status(401).json({ error: "Token not provided" });
-  }
-  jwt.verify(token, SECRET_KEY, (err, decoded) => {
-    if (err) {
-      return res.status(403).json({ error: "Invalid token" });
-    }
-    req.decoded = decoded; //if there is a token, it moves on to the next function
-    next();
-  });
-};
+// // TOKEN VERIFICATION FOR ADMIN RIGHTS TO ADD, UPDATE, DELETE
+// const verifyToken = (req, res, next) => {
+//   const token = req.headers.authorization; //Token has been save to headers from AdminLogin.jsx
+//   if (!token) {
+//     return res.status(401).json({ error: "Token not provided" });
+//   }
+//   jwt.verify(token, SECRET_KEY, (err, decoded) => {
+//     if (err) {
+//       return res.status(403).json({ error: "Invalid token" });
+//     }
+//     req.decoded = decoded; //if there is a token, it moves on to the next function
+//     next();
+//   });
+// };
 
 app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
@@ -164,8 +171,54 @@ async function deleteCommands(req, res, next) {
   }
 }
 
+// TOKEN VERIFICATION FOR ADMIN RIGHTS TO ADD, UPDATE, DELETE
+const verifyToken = (req, res, next) => {
+  const token = req.headers.authorization; //Token has been save to headers from AdminLogin.jsx
+  if (!token) {
+    return res.status(401).json({ error: "Token not provided" });
+  }
+  jwt.verify(token, SECRET_KEY, (err, decoded) => {
+    if (err) {
+      return res.status(403).json({ error: "Invalid token" });
+    }
+    req.decoded = decoded; //if there is a token, it moves on to the next function
+    next();
+  });
+};
+
+app.post("/api/login", (req, res) => {
+  const { username, password } = req.body;
+
+  // CONDITIONAL FOR LOGGING IN TO THE ADMIN ACCOUNT
+  if (
+    username === ADMIN_USERNAME &&
+    // bcrypt.compareSync(password, adminAccount.passwordHash)
+    password === ADMIN_PASSWORD
+  ) {
+    const token = jwt.sign({ username: ADMIN_USERNAME }, SECRET_KEY, {
+      expiresIn: "1h",
+    });
+    res.json({ token });
+  } else {
+    res.status(401).json({ error: "Invalid credentials." });
+  }
+});
+
+// ROUTES WITH ADMIN TOKEN VERIFICATION
+app.post("/api/commands", verifyToken, postCommands);
+app.patch("/api/commands/:id", verifyToken, editCommands);
+app.delete("/api/commands/:id", verifyToken, deleteCommands);
+
 async function postChat(req, res, next) {
   const { message, messages } = req.body;
+  const payload = {
+    role: "user",
+    content: message,
+    messages: messages,
+  };
+
+  //console.log("Sending payload to AI API:", payload);
+
   try {
     const response = await fetch(AI_API, {
       method: "POST",
@@ -183,11 +236,12 @@ async function postChat(req, res, next) {
     const contentType = response.headers.get("content-type");
     if (contentType && contentType.includes("application/json")) {
       const messageData = await response.json();
-      res.status(201).json(messageData);
+      res
+        .status(201)
+        .json({ message: { content: messageData.message, role: "assistant" } });
     } else {
-      // If response is not JSON, assume it's plain text and send it as JSON
       const text = await response.text();
-      res.status(200).json({ message: text });
+      res.status(200).json({ message: { content: text, role: "assistant" } });
     }
   } catch (error) {
     console.error("Error in postChat:", error);

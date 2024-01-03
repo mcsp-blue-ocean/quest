@@ -52,37 +52,40 @@ function App() {
   }, []);
 
   return (
-    <div id="main" className="mx-auto max-w-7xl h-dvh text-stone-200">
+    <div id="main" className="mx-auto h-dvh text-stone-200">
       <Header onToggleModal={handleToggleModal} />
-      <Routes>
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/home" element={<Landing />} />
-        <Route
-          path="/categories"
-          element={
-            <CommandCategories
-              selectedCategoryId={selectedCategoryId}
-              setSelectedCategoryId={setSelectedCategoryId}
-              categories={categories}
-              handleCategoryClick={handleCategoryClick}
-              filteredCommands={filteredCommands}
-            />
-          }
-        />
-        <Route
-          path="/commands"
-          element={
-            <SelectedCommands
-              selectedCategoryId={selectedCategoryId}
-              filteredCommands={filteredCommands}
-              categories={categories}
-            />
-          }
-        />
-      </Routes>
+      <div className="mx-auto max-w-7xl">
+        <Routes>
+          <Route path="/admin" Component={Admin} />
+          <Route path="/home" Component={Landing} />
+          <Route
+            path="/categories"
+            Component={() => (
+              <CommandCategories
+                selectedCategoryId={selectedCategoryId}
+                setSelectedCategoryId={setSelectedCategoryId}
+                categories={categories}
+                handleCategoryClick={handleCategoryClick}
+                filteredCommands={filteredCommands}
+              />
+            )}
+          />
+          <Route
+            path="/commands"
+            Component={() => (
+              <SelectedCommands
+                selectedCategoryId={selectedCategoryId}
+                filteredCommands={filteredCommands}
+                categories={categories}
+              />
+            )}
+          />
 
+          <Route path="/" Component={Landing} />
+        </Routes>
+      </div>
       <Footer />
-      {openModal && <Modal />}
+      <Chatbot />
     </div>
   );
 }

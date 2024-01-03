@@ -16,6 +16,9 @@ export default {
       },
     }),
   ],
+  define: {
+    "process.env.VITE_URL_PATH": JSON.stringify(process.env.VITE_URL_PATH),
+  },
   server: {
     proxy: {
       "/api": `http://localhost:${process.env.PORT}`,
