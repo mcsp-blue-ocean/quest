@@ -1,40 +1,17 @@
 import { Link } from "react-router-dom";
-import clipboard from "../assets/commands/clipboard-svgrepo-com.svg";
-import React, { useState } from "react";
+import Command from "./Command";
 
 const SelectedCommands = ({
   selectedCategoryId,
   filteredCommands,
   categories,
 }) => {
-  // console.log("hello again!");
-  // console.log(filteredCommands[0], "filtered commands from command tester");
-  // console.log(categories);
-
   const categoryParent = categories.map(
     (el) => el.id === selectedCategoryId && el.parent_category
   );
   const categoryName = categories.map(
     (el) => el.id === selectedCategoryId && el.category
   );
-
-  const [copiedCommands, setCopiedCommands] = useState({});
-
-  const handleCopyClick = (syntax, index) => {
-    navigator.clipboard.writeText(syntax).then(() => {
-      console.log("Syntax copied to clipboard");
-      setCopiedCommands((prevCopiedCommands) => ({
-        ...prevCopiedCommands,
-        [index]: true,
-      }));
-      setTimeout(() => {
-        setCopiedCommands((prevCopiedCommands) => ({
-          ...prevCopiedCommands,
-          [index]: false,
-        }));
-      }, 2000);
-    });
-  };
 
   return (
     <div className="bg-sky-950 py-4 px-2">
@@ -53,33 +30,20 @@ const SelectedCommands = ({
         </p>
         <ul className="scrollbar-thin scrollbar-thumb-sky-600 scrollbar-track-sky-950 md:w-10/12 h-full mx-auto flex flex-col gap-6 bg-sky-900 mt-10 rounded sm:p-6 p-2 mx-1 sm:overflow-y-auto">
           {filteredCommands &&
-            filteredCommands.map((command, index) => (
-              <li
-                key={index}
-                className="bg-sky-950 sm:p-4 p-2 rounded shadow text-lg"
-              >
-                <p>
-                  <span className="font-bold">Syntax: </span>
-                  {command.command_syntax}
-                </p>
-                {!copiedCommands[index] ? (
-                  <img
-                    src={clipboard}
-                    alt="clipboard"
-                    className="w-13 cursor-pointer"
-                    onClick={() =>
-                      handleCopyClick(command.command_syntax, index)
-                    }
-                  />
-                ) : (
-                  <span>Copied!</span>
-                )}
-                <p>
-                  <span className="font-bold">Description: </span>
-                  {command.command_description}
-                </p>
-              </li>
-            ))}
+            filteredCommands.map(
+              ({ command_syntax, command_description }, index) => (
+                <li
+                  key={index}
+                  className="bg-sky-950 sm:p-4 p-2 rounded shadow text-lg"
+                >
+                  <Command syntax={command_syntax} />
+                  <p>
+                    <span className="font-bold">Description: </span>
+                    {command_description}
+                  </p>
+                </li>
+              )
+            )}
         </ul>
       </div>
     </div>
