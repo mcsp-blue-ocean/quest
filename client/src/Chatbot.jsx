@@ -1,6 +1,8 @@
 import { useState } from "react";
 import ai from "./assets/chatbot.svg?web";
 import dotenv from "dotenv";
+import.meta.env.VITE_URL_PATH;
+//dotenv.config({ path: "../../.env" });
 
 const Chatbot = () => {
   // State variables
@@ -18,7 +20,7 @@ const Chatbot = () => {
 
   //chatbot UI coauthed by Greg and Mitch
   const handleSendMessage = async (e) => {
-    const { BASE_URL } = process.env;
+    //const { REACT_APP_BASE_URL } = process.env;
 
     e.preventDefault();
     if (inputMessage.trim() !== "") {
@@ -45,13 +47,16 @@ const Chatbot = () => {
       //console.log("Sending payload to server:", payload);
 
       try {
-        const response = await fetch(`${BASE_URL}/api/chat`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_URL_PATH}/api/chat`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          }
+        );
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
