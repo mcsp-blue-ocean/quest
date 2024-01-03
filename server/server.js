@@ -1,13 +1,19 @@
 import express from "express";
 import pg from "pg";
 import dotenv from "dotenv";
-import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import cors from "cors";
 
 dotenv.config({ path: "../.env" });
 
-const { PORT, DATABASE_URL, AI_API, SECRET_KEY, ADMIN_HASH } = process.env;
+const {
+  PORT,
+  DATABASE_URL,
+  AI_API,
+  SECRET_KEY,
+  ADMIN_PASSWORD,
+  ADMIN_USERNAME,
+} = process.env;
 
 const client = new pg.Client({
   connectionString: DATABASE_URL,
@@ -116,12 +122,6 @@ async function deleteCommands(req, res, next) {
   }
 }
 
-// ADMIN LOGIN
-const adminAccount = {
-  username: "admin",
-  passwordHash: ADMIN_HASH,
-};
-
 // TOKEN VERIFICATION FOR ADMIN RIGHTS TO ADD, UPDATE, DELETE
 const verifyToken = (req, res, next) => {
   const token = req.headers.authorization; //Token has been save to headers from AdminLogin.jsx
@@ -142,10 +142,11 @@ app.post("/api/login", (req, res) => {
 
   // CONDITIONAL FOR LOGGING IN TO THE ADMIN ACCOUNT
   if (
-    username === adminAccount.username &&
-    bcrypt.compareSync(password, adminAccount.passwordHash)
+    username === ADMIN_USERNAME &&
+    // bcrypt.compareSync(password, adminAccount.passwordHash)
+    password === ADMIN_PASSWORD
   ) {
-    const token = jwt.sign({ username: adminAccount.username }, SECRET_KEY, {
+    const token = jwt.sign({ username: ADMIN_USERNAME }, SECRET_KEY, {
       expiresIn: "1h",
     });
     res.json({ token });
