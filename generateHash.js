@@ -1,3 +1,5 @@
+// commented out because it is not needed anymore, leaving just in case we implement bcrypt correctly later on for more accounts
+
 // import bcrypt from "bcrypt";
 // import dotenv from "dotenv";
 
