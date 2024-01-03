@@ -7,14 +7,20 @@
     "client"
   ],
   "scripts": {
-    "test": "ava"
+    "test": "vitest",
+    "dev": "concurrently \"npm:dev:*\"",
+    "dev:client": "npm run dev --workspace=client",
+    "dev:server": "npm run dev --workspace=server",
+    "lint": "prettier . --write"
   },
   "devDependencies": {
-    "ava": "^6.0.1",
     "concurrently": "^8.2.2",
-    "prettier": "^3.1.1"
+    "prettier": "^3.1.1",
+    "vitest": "^1.1.1"
   },
   "dependencies": {
-    "bcrypt": "^5.1.1"
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "vite": "^5.0.10"
   }
 }

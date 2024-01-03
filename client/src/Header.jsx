@@ -2,7 +2,6 @@ import HeaderNav from "./Header/HeaderNav";
 import logo from "./assets/header/logo.png?web";
 import login from "./assets/header/login.svg";
 import React from "react";
-import React from "react";
 import { Link } from "react-router-dom";
 
 const Header = ({ onToggleModal }) => {
