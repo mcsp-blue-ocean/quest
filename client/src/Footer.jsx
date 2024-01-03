@@ -3,7 +3,7 @@ import Social from "./Footer/Social";
 
 const Footer = () => {
   return (
-    <div className="flex flex-col items-center gap-10 px-20 py-10">
+    <div className="bg-gradient-to-t from-sky-900 to-transparent sm:sticky top-full flex flex-col items-center gap-10 px-20 py-4">
       <FooterNav />
       <hr className="w-full" />
       <Social />
