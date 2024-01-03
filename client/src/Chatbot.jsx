@@ -2,8 +2,6 @@ import { useState } from "react";
 import ai from "./assets/chatbot.svg?web";
 import dotenv from "dotenv";
 
-dotenv.config();
-
 const Chatbot = () => {
   // State variables
   const [isOpen, setIsOpen] = useState(false);
@@ -20,6 +18,8 @@ const Chatbot = () => {
 
   //chatbot UI coauthed by Greg and Mitch
   const handleSendMessage = async (e) => {
+    const { BASE_URL } = process.env;
+
     e.preventDefault();
     if (inputMessage.trim() !== "") {
       const newUserMessage = {
@@ -45,7 +45,7 @@ const Chatbot = () => {
       //console.log("Sending payload to server:", payload);
 
       try {
-        const response = await fetch(`${process.env.BASE_URL}/api/chat`, {
+        const response = await fetch(`${BASE_URL}/api/chat`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
