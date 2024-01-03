@@ -1,15 +1,25 @@
-import { it, expect, beforeEach } from "vitest";
+import { it, expect, beforeEach, afterEach } from "vitest";
+process.env.DATABASE_URL = "postgres://localhost/quest_test";
 import { app, db } from "../server/server.js";
 import request from "supertest";
 
-// Test for commands
+afterEach(async () => {
+  await db.query("DELETE FROM commands");
+});
+
+//
+//
+//TEST FOR COMMANDS
 beforeEach(async () => {
   await db.query("DELETE FROM commands");
 });
 
 it("GET /api/commands", async () => {
   await db.query(
-    "INSERT INTO commands (category_id, command_syntax, command_description) VALUES(2, 'npm run test', 'Runs the tests for the project')"
+    "INSERT INTO categories (id, category, parent_category) VALUES (1, 'SQL', 'Databases')"
+  );
+  await db.query(
+    "INSERT INTO commands (category_id, command_syntax, command_description) VALUES(1, 'npm run test', 'Runs the tests for the project')"
   );
 
   const { status, body } = await request(app).get("/api/commands");
@@ -20,14 +30,20 @@ it("GET /api/commands", async () => {
   const [firstTask] = body;
   expect(firstTask.id).toBeTypeOf("number");
   expect(firstTask).toEqual({
-    category_id: 2,
+    category_id: 1,
     command_syntax: "npm run test",
     command_description: "Runs the tests for the project",
     id: firstTask.id,
   });
 });
 
-//Test for categories
+afterEach(async () => {
+  await db.query("DELETE FROM categories");
+});
+
+//
+//
+// TEST FOR CATEGORIES
 beforeEach(async () => {
   await db.query("DELETE FROM categories");
 });
@@ -51,6 +67,10 @@ it("GET /api/categories", async () => {
     id: firstTask.id,
   });
 });
+
+//
+//
+//TEST FOR COMMANDS BY CATEGORY
 
 // it("GET /api/commands/:categoryId returns an array of commands for a specific category", async () => {
 //   const categoryId = 5;
