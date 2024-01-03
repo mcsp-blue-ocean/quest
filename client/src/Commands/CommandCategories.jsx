@@ -5,18 +5,18 @@ const CommandCategories = ({ categories, handleCategoryClick }) => {
     <>
       <ul className="grid md:grid-cols-3 sm:grid-cols-2 gap-6 bg-sky-950 p-4">
         {categories &&
-          categories.map((category) => (
+          categories.map(({ category, id, parent_category }) => (
             <Link to="/commands/">
               <li
                 className="bg-slate-300 rounded px-4 py-14 relative"
-                key={category.id}
-                onClick={() => handleCategoryClick(category.id)}
+                key={id}
+                onClick={() => handleCategoryClick(id)}
               >
                 <p className="bg-sky-900 rounded inline font-bold p-1 m-1 absolute top-0 left-0">
-                  {category.parent_category}
+                  {parent_category}
                 </p>
                 <p className="text-black text-center font-bold text-4xl">
-                  {category.category}
+                  {category}
                 </p>
               </li>
             </Link>
