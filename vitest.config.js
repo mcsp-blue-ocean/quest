@@ -1,13 +1,7 @@
-import { defineConfig } from "vitest/config";
-import viteConfig from "./vite.config.js";
+import { configDefaults, defineConfig } from "vitest/config";
 
-export default defineConfig(
-  {
-    // Add Vitest specific configurations here
-    test: {
-      // Specify your test configurations
-      // ...
-    },
+export default defineConfig({
+  test: {
+    exclude: [...configDefaults.exclude, "packages/template/*"],
   },
-  viteConfig
-);
+});

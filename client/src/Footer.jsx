@@ -1,5 +1,6 @@
 import FooterNav from "./Footer/FooterNav";
 import Social from "./Footer/Social";
+import React from "react";
 
 const Footer = () => {
   return (

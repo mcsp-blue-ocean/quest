@@ -1,13 +1,10 @@
-import { defineConfig } from "vitest/config";
-import { defineConfig as defineViteConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import { imagetools } from "vite-imagetools";
 import dotenv from "dotenv";
 
-dotenv.config({ path: "./client/.env" });
+dotenv.config({ path: "../.env" });
 
-// Vite configuration
-const viteConfig = defineViteConfig({
+export default {
   plugins: [
     react(),
     imagetools({
@@ -24,16 +21,5 @@ const viteConfig = defineViteConfig({
       "/api": `http://localhost:${process.env.PORT}`,
     },
   },
-  cacheDir: "./client/node_modules/.vite", // Adjust the path accordingly
-});
-
-// Vitest configuration
-export default defineConfig(
-  {
-    test: {
-      // Specify your test configurations
-      // ...
-    },
-  },
-  viteConfig
-);
+  cacheDir: "./client/node_modules/.vite",
+};

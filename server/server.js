@@ -5,9 +5,10 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import cors from "cors";
 
-dotenv.config({ path: "../.env" });
+dotenv.config({ path: new URL("../.env", import.meta.url).pathname });
 
 const { PORT, DATABASE_URL, SECRET_KEY, ADMIN_HASH } = process.env;
+console.log("DATABASE_URL:", DATABASE_URL);
 
 const client = new pg.Client({
   connectionString: DATABASE_URL,
@@ -36,7 +37,8 @@ async function getCommands(_, res, next) {
     );
     res.send(data.rows);
   } catch (error) {
-    next(error);
+    console.error("Error in getCommands:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 }
 
@@ -45,10 +47,10 @@ async function getCategories(_, res, next) {
     const data = await client.query(
       "SELECT * FROM categories ORDER BY category ASC"
     );
-
     res.send(data.rows);
   } catch (error) {
-    next(error);
+    console.error("Error in getCategories:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 }
 
@@ -61,14 +63,15 @@ async function getCommandsByCategoryId(req, res, next) {
     );
     res.send(data.rows);
   } catch (error) {
-    next(error);
+    console.error("Error in getCommandsByCategoryId:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 }
 
 // ADMIN LOGIN
 const adminAccount = {
   username: "admin",
-  passwordHash: ADMIN_HASH,
+  passwordHash: ADMIN_HASH, //(Scott just made this an environmental variable, need to figure out how to get it to work)
 };
 
 // TOKEN VERIFICATION FOR ADMIN RIGHTS TO ADD, UPDATE, DELETE
@@ -161,49 +164,6 @@ async function deleteCommands(req, res, next) {
   }
 }
 
-// ADMIN LOGIN
-const adminAccount = {
-  username: "admin",
-  passwordHash: ADMIN_HASH,
-};
-
-// TOKEN VERIFICATION FOR ADMIN RIGHTS TO ADD, UPDATE, DELETE
-const verifyToken = (req, res, next) => {
-  const token = req.headers.authorization; //Token has been save to headers from AdminLogin.jsx
-  if (!token) {
-    return res.status(401).json({ error: "Token not provided" });
-  }
-  jwt.verify(token, SECRET_KEY, (err, decoded) => {
-    if (err) {
-      return res.status(403).json({ error: "Invalid token" });
-    }
-    req.decoded = decoded; //if there is a token, it moves on to the next function
-    next();
-  });
-};
-
-app.post("/api/login", (req, res) => {
-  const { username, password } = req.body;
-
-  // CONDITIONAL FOR LOGGING IN TO THE ADMIN ACCOUNT
-  if (
-    username === adminAccount.username &&
-    bcrypt.compareSync(password, adminAccount.passwordHash)
-  ) {
-    const token = jwt.sign({ username: adminAccount.username }, SECRET_KEY, {
-      expiresIn: "1h",
-    });
-    res.json({ token });
-  } else {
-    res.status(401).json({ error: "Invalid credentials." });
-  }
-});
-
-// ROUTES WITH ADMIN TOKEN VERIFICATION
-app.post("/api/commands", verifyToken, postCommands);
-app.patch("/api/commands/:id", verifyToken, editCommands);
-app.delete("/api/commands/:id", verifyToken, deleteCommands);
-
 async function postChat(req, res, next) {
   const { message, messages } = req.body;
   try {
@@ -248,4 +208,4 @@ app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
 
-export { app as server };
+export { client as db, app };
