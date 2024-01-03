@@ -30,18 +30,20 @@ const SelectedCommands = ({
         </p>
         <ul className="scrollbar-thin scrollbar-thumb-sky-600 scrollbar-track-sky-950 md:w-10/12 h-full mx-auto flex flex-col gap-6 bg-sky-900 mt-10 rounded sm:p-6 p-2 mx-1 sm:overflow-y-auto">
           {filteredCommands &&
-            filteredCommands.map((command, index) => (
-              <li
-                key={index}
-                className="bg-sky-950 sm:p-4 p-2 rounded shadow text-lg"
-              >
-                <Command syntax={command.command_syntax} />
-                <p>
-                  <span className="font-bold">Description: </span>
-                  {command.command_description}
-                </p>
-              </li>
-            ))}
+            filteredCommands.map(
+              ({ command_syntax, command_description }, index) => (
+                <li
+                  key={index}
+                  className="bg-sky-950 sm:p-4 p-2 rounded shadow text-lg"
+                >
+                  <Command syntax={command_syntax} />
+                  <p>
+                    <span className="font-bold">Description: </span>
+                    {command_description}
+                  </p>
+                </li>
+              )
+            )}
         </ul>
       </div>
     </div>
