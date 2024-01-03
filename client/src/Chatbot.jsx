@@ -1,5 +1,8 @@
 import { useState } from "react";
 import ai from "./assets/chatbot.svg?web";
+import dotenv from "dotenv";
+import.meta.env.VITE_URL_PATH;
+//dotenv.config({ path: "../../.env" });
 
 const Chatbot = () => {
   // State variables
@@ -15,22 +18,64 @@ const Chatbot = () => {
     setInputMessage(e.target.value);
   };
 
-  const handleSendMessage = (e) => {
+  //chatbot UI coauthed by Greg and Mitch
+  const handleSendMessage = async (e) => {
+    //const { REACT_APP_BASE_URL } = process.env;
+
     e.preventDefault();
     if (inputMessage.trim() !== "") {
-      setChatMessages((prevMessages) => [
-        ...prevMessages,
-        { user: `User: ${inputMessage}`, type: "user" },
-      ]);
+      const newUserMessage = {
+        user: `🤔: ${inputMessage}`,
+        type: "user",
+      };
 
-      // *** BLAISE CHATBOT LOGIC INPUT ***
+      // Create a new array that includes the new user message
+      const updatedChatMessages = [...chatMessages, newUserMessage];
 
-      // Placeholder for Blaise chatbox logic
-      setChatMessages((prevMessages) => [
-        ...prevMessages,
-        { bot: "Bot: What a ridiculous question to ask!", type: "bot" },
-      ]);
-      // *** END OF BLAISE CHATBOX LOGIC ***
+      // Update the state with the new user message
+      setChatMessages(updatedChatMessages);
+
+      // Construct the payload using the updatedChatMessages array
+      const payload = {
+        message: inputMessage,
+        messages: updatedChatMessages.map((msg) => ({
+          role: msg.type,
+          content: msg.type === "user" ? msg.user.slice(4) : msg.bot.slice(4),
+        })),
+      };
+
+      //console.log("Sending payload to server:", payload);
+
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_URL_PATH}/api/chat`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        // Inside the handleSendMessage function, after receiving the response from the server
+        const responseData = await response.json();
+        const botMessage = {
+          bot: `🤖: ${responseData.message.content}`,
+          type: "assistant",
+        };
+
+        // Update the state with the bot's response
+        setChatMessages((prevMessages) => [...prevMessages, botMessage]);
+      } catch (error) {
+        console.error("Failed to send message:", error);
+      }
+
+      // Clear the input field
       setInputMessage("");
     }
   };
@@ -49,12 +94,22 @@ const Chatbot = () => {
             chatMessages.length !== 0 && `p-4`
           } rounded`}
         >
-          {chatMessages.map(({ user, bot }, index) => (
+          {chatMessages.map((msg, index) => (
             <ul key={index}>
-              <li className="bg-sky-300 text-stone-800 rounded px-1 shadow-md">
-                {user}
+              <li
+                className={`bg-sky-300 text-stone-800 rounded px-1 shadow-md ${
+                  msg.type === "user" ? "" : "hidden"
+                }`}
+              >
+                {msg.user}
               </li>
-              <li className="bg-sky-950 rounded px-1 shadow-md">{bot}</li>
+              <li
+                className={`bg-sky-950 rounded px-1 shadow-md ${
+                  msg.type === "assistant" ? "" : "hidden"
+                }`}
+              >
+                {msg.bot}
+              </li>
             </ul>
           ))}
         </div>
