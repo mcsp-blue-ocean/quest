@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import clipboard from "../assets/commands/clipboard-svgrepo-com.svg";
+import React, { useState } from "react";
 
 const SelectedCommands = ({
   selectedCategoryId,
@@ -15,6 +17,24 @@ const SelectedCommands = ({
   const categoryName = categories.map(
     (el) => el.id === selectedCategoryId && el.category
   );
+
+  const [copiedCommands, setCopiedCommands] = useState({});
+
+  const handleCopyClick = (syntax, index) => {
+    navigator.clipboard.writeText(syntax).then(() => {
+      console.log("Syntax copied to clipboard");
+      setCopiedCommands((prevCopiedCommands) => ({
+        ...prevCopiedCommands,
+        [index]: true,
+      }));
+      setTimeout(() => {
+        setCopiedCommands((prevCopiedCommands) => ({
+          ...prevCopiedCommands,
+          [index]: false,
+        }));
+      }, 2000);
+    });
+  };
 
   return (
     <div className="md:w-3/4 mx-auto flex flex-col items-center bg-slate-300 pb-10 my-4 rounded relative">
@@ -41,6 +61,16 @@ const SelectedCommands = ({
                 <span className="font-bold">Syntax: </span>
                 {command.command_syntax}
               </p>
+              {!copiedCommands[index] ? (
+                <img
+                  src={clipboard}
+                  alt="clipboard"
+                  className="w-13 cursor-pointer"
+                  onClick={() => handleCopyClick(command.command_syntax, index)}
+                />
+              ) : (
+                <span>Copied!</span>
+              )}
               <p>
                 <span className="font-bold">Description: </span>
                 {command.command_description}
