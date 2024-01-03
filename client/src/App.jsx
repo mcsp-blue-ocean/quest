@@ -51,39 +51,40 @@ function App() {
   }, []);
 
   return (
-    <div id="main" className="mx-auto max-w-7xl h-dvh text-stone-200">
-    
+    <div id="main" className="mx-auto h-dvh text-stone-200">
       <Header onToggleModal={handleToggleModal} />
-      <Routes>
-      <Route path="/admin" Component={Admin} />
-        <Route path="/home" Component={Landing} />
-        <Route
-          path="/categories"
-          Component={() => (
-            <CommandCategories
-              selectedCategoryId={selectedCategoryId}
-              setSelectedCategoryId={setSelectedCategoryId}
-              categories={categories}
-              handleCategoryClick={handleCategoryClick}
-              filteredCommands={filteredCommands}
-            />
-          )}
-        />
-        <Route
-          path="/commands"
-          Component={() => (
-            <SelectedCommands
-              selectedCategoryId={selectedCategoryId}
-              filteredCommands={filteredCommands}
-              categories={categories}
-            />
-          )}
-        />
+      <div className="mx-auto max-w-7xl">
+        <Routes>
+          <Route path="/admin" Component={Admin} />
+          <Route path="/home" Component={Landing} />
+          <Route
+            path="/categories"
+            Component={() => (
+              <CommandCategories
+                selectedCategoryId={selectedCategoryId}
+                setSelectedCategoryId={setSelectedCategoryId}
+                categories={categories}
+                handleCategoryClick={handleCategoryClick}
+                filteredCommands={filteredCommands}
+              />
+            )}
+          />
+          <Route
+            path="/commands"
+            Component={() => (
+              <SelectedCommands
+                selectedCategoryId={selectedCategoryId}
+                filteredCommands={filteredCommands}
+                categories={categories}
+              />
+            )}
+          />
 
-        <Route path="/" Component={Landing} />
-      </Routes>
-      <Chatbot />
+          <Route path="/" Component={Landing} />
+        </Routes>
+      </div>
       <Footer />
+      <Chatbot />
     </div>
   );
 }
