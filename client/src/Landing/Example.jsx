@@ -29,7 +29,7 @@ const Example = () => {
         <Window color={"bg-slate-950/60"}>{examples}</Window>
       </div>
       <div id="right-side" className="sm:w-1/2">
-        <p className="text-6xl font-bold underline mb-5">Examples</p>
+        <p className={header}>Examples</p>
         <p className={`${pStyle} mb-5`}>
           Whether you need a quick reference for Syntax or ask the AI Chatbot a question, QUEST is here to help you!  To use the Command Cheatsheets,
           click on the Commands tab at the top and select the Category that you would like to reference.  Looking for a category or syntax that isn't on there?  No problem!  Ask
