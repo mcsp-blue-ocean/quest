@@ -1,6 +1,8 @@
 import { it, expect, beforeEach, afterEach } from "vitest";
 //TESTS ARE PERFORMED ON A TEST DATABASE
 process.env.DATABASE_URL = "postgres://localhost/quest_test";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import { app, db } from "../server/server.js";
 import request from "supertest";
 
@@ -112,16 +114,34 @@ it("GET /api/commands/:categoryId", async () => {
   });
 });
 
-// //   // Test for admin login
-// //   test("POST /api/login returns a token for valid admin credentials", async () => {
-// //     const res = await request(server)
-// //       .post("/api/login")
-// //       .send({ username: "admin", password: "admin_password" });
-// //     test.is(res.status, 200);
-// //     test.true(res.body.hasOwnProperty("token"));
-// //   });
+//
+//
+// TEST FOR ADMIN LOGIN
+beforeEach(async () => {
+  await db.query("DELETE FROM admin_accounts");
+});
 
-// //   // Log DATABASE_URL and PORT
-// //   console.log("DATABASE URL:", DATABASE_URL);
-// //   console.log("PORT:", PORT);
-// // });
+it("POST /api/login returns a token for valid admin credentials", async () => {
+  const ADMIN_USERNAME = "admin";
+  const ADMIN_PASSWORD = "admin_password";
+
+  // Hash the password using bcrypt
+  const HASHED_PASSWORD = await bcrypt.hash(ADMIN_PASSWORD, 10);
+
+  // Insert admin credentials into your test database
+  await db.query(
+    "INSERT INTO admin_accounts (username, password_hash) VALUES($1, $2)",
+    [ADMIN_USERNAME, HASHED_PASSWORD]
+  );
+
+  const res = await request(app)
+    .post("/api/login")
+    .send({ username: ADMIN_USERNAME, password: ADMIN_PASSWORD });
+  expect(res.status).toBe(200);
+  expect(res.body).toHaveProperty("token");
+  const decoded = jwt.verify(res.body.token, process.env.SECRET_KEY);
+  expect(decoded.username).toBe(ADMIN_USERNAME);
+
+  // Clear the test data from the database
+  await db.query("DELETE FROM admin_accounts");
+});

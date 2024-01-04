@@ -75,3 +75,6 @@ INSERT INTO commands( category_id,command_syntax,command_description) VALUES
 (7, 'brew uninstall <formula>', 'Uninstalls the specified formula.'),
 (7, 'brew update', 'Updates Homebrew itself with its package database.'),
 (7, 'brew upgrade && brew update', 'Sequentially updates installed packages and then Homebrew itself with its package database.');
+
+INSERT INTO admin_accounts (username, password_hash) VALUES 
+('admin', '$2a$10$yourHashedPasswordHere');

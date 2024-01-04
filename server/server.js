@@ -2,6 +2,7 @@ import express from "express";
 import pg from "pg";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 import cors from "cors";
 
 dotenv.config({ path: new URL("../.env", import.meta.url).pathname });
@@ -90,14 +91,21 @@ const verifyToken = (req, res, next) => {
   });
 };
 
-app.post("/api/login", (req, res) => {
+app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
+  const results = await client.query(
+    "SELECT * FROM admin_accounts WHERE username = $1",
+    [username]
+  );
+  if (results.rows.length === 0) {
+    return res
+      .status(401)
+      .json({ error: "Invalid credentials! You shall not pass." });
+  }
 
+  const adminAccount = results.rows[0];
   // CONDITIONAL FOR LOGGING IN TO THE ADMIN ACCOUNT
-  if (
-    username === adminAccount.username &&
-    bcrypt.compareSync(password, adminAccount.passwordHash)
-  ) {
+  if (bcrypt.compareSync(password, adminAccount.password_hash)) {
     const token = jwt.sign({ username: adminAccount.username }, SECRET_KEY, {
       expiresIn: "1h",
     });

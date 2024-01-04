@@ -30,3 +30,9 @@ CREATE TABLE users(
     id SERIAL NOT NULL PRIMARY KEY,
     username VARCHAR(75) UNIQUE NOT NULL,
     password_hash VARCHAR(75) TEXT NOT NULL);
+
+CREATE TABLE admin_accounts (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL
+);
