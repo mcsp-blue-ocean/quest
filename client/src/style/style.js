@@ -97,17 +97,15 @@ export const scrollStyling =
   "scrollbar-thin scrollbar-thumb-sky-600 scrollbar-track-sky-950 md:w-10/12 h-full mx-auto flex flex-col gap-6 bg-sky-900 mt-10 rounded sm:p-6 p-2 mx-1 sm:overflow-y-auto";
 export const commandEntryStyle = "bg-sky-950 sm:p-4 p-2 rounded shadow text-lg";
 
-export const markdownStyles = {
-  h1: "text-white",
-  h2: "text-white",
-  h3: "text-white",
-  h4: "text-white",
-  h5: "text-white",
-  h6: "text-white",
-  strong: "text-white",
-  em: "text-white",
-  p: "text-white",
-  th: "bg-gray-600 text-white p-6 text-left uppercase",
-  td: "text-white p-6 text-left",
-  table: "w-full border-collapse border-gray-600",
-};
+//Admin
+export const adminStyle =
+  "sm:h-[600px] flex flex-col justify-center items-center gap-4 bg-sky-900/70 mt-4 border border-white/30 sm:mx-4 rounded shadow-xl p-4 relative";
+export const signInStyle = "text-center font-bold text-5xl text-white";
+export const formStyle = "flex flex-col items-center gap-4";
+export const credInput =
+  "font-bold text-black p-2 rounded-xl placeholder:text-black";
+export const submitForm =
+  "w-full bg-sky-950 px-6 py-2 rounded shadow border border-sky-300 font-bold tracking-wide";
+export const regText = "text-sm leading-relaxed text-grey-900";
+export const accountText = "font-bold text-grey-700";
+export const dangerText = "text-red-700 bg-red-200 p-2 rounded";
