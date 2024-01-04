@@ -95,36 +95,20 @@ const Chatbot = () => {
 
   return (
     <div className="relative">
-      <div
-        className={`${
-          !isOpen
-            ? "hidden"
-            : "flex flex-col items-center fixed bottom-28 right-6 p-2 rounded-lg shadow-xl bg-sky-700 border border-white/50 max-h-[80vh] overflow-hidden"
-        }`}
-      >
+      <div className={`${!isOpen ? "hidden" : toggleBot}`}>
         <div
-          className={`flex flex-col gap-2 bg-sky-900 overflow-hidden overflow-y-auto ${
-            chatMessages.length !== 0 && `p-4`
-          } rounded`}
+          className={`${messagesStyling} ${chatMessages.length !== 0 && `p-4`}`}
         >
           {chatMessages.map((msg, index) => (
             <ul key={index} className="prose">
-              <li
-                className={`rounded px-1 shadow-md ${
-                  msg.type === "user" ? "bg-sky-300 text-stone-800" : "hidden"
-                }`}
-              >
+              <li className={`${userStyle} ${msg.type === userToggle}`}>
                 {msg.type === "user" ? (
                   msg.user
                 ) : (
                   <ReactMarkdown>{msg.bot}</ReactMarkdown>
                 )}
               </li>
-              <li
-                className={`rounded px-1 shadow-md ${
-                  msg.type === "assistant" ? "" : "hidden"
-                }`}
-              >
+              <li className={`${botStyle} ${msg.type === botToggle}`}>
                 {msg.type === "assistant" && (
                   <>
                     <span className="bot-emoji text-white">🤖:</span>
