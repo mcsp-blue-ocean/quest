@@ -1,5 +1,11 @@
 import Window from "./Window";
-import { pStyle, exampleStyle, header, buttonStyle } from "../style/style";
+import {
+  pStyle,
+  exampleStyle,
+  header,
+  buttonStyle,
+  howPara,
+} from "../style/style";
 
 const Example = () => {
   const examples = (
@@ -30,11 +36,13 @@ const Example = () => {
       </div>
       <div id="right-side" className="sm:w-1/2">
         <p className={header}>Examples</p>
-        <p className={`${pStyle} mb-5`}>
-          Whether you need a quick reference for Syntax or ask the AI Chatbot a question, QUEST is here to help you!  To use the Command Cheatsheets,
-          click on the Commands tab at the top and select the Category that you would like to reference.  Looking for a category or syntax that isn't on there?  No problem!  Ask
-          our friendly AI chatbot, powered by Gemini AI, to answer all of your questions ASAP!
-
+        <p className={howPara}>
+          Whether you need a quick reference for Syntax or ask the AI Chatbot a
+          question, QUEST is here to help you! To use the Command Cheatsheets,
+          click on the Commands tab at the top and select the Category that you
+          would like to reference. Looking for a category or syntax that isn't
+          on there? No problem! Ask our friendly AI chatbot, powered by Gemini
+          AI, to answer all of your questions ASAP!
         </p>
         <button className={buttonStyle}>Start Learning Now!</button>
       </div>
