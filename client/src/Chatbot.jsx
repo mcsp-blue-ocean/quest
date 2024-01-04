@@ -1,8 +1,8 @@
 import { useState } from "react";
 import ai from "./assets/chatbot.svg?web";
-import dotenv from "dotenv";
+import ReactMarkdown from "react-markdown";
 import.meta.env.VITE_URL_PATH;
-//dotenv.config({ path: "../../.env" });
+import gfm from "remark-gfm";
 
 const Chatbot = () => {
   // State variables
@@ -86,29 +86,39 @@ const Chatbot = () => {
         className={`${
           !isOpen
             ? "hidden"
-            : "flex flex-col items-center fixed bottom-28 right-6 p-2 rounded-lg shadow-xl bg-sky-700 border border-white/50"
+            : "flex flex-col items-center fixed bottom-28 right-6 p-2 rounded-lg shadow-xl bg-sky-700 border border-white/50 max-h-[80vh] overflow-hidden"
         }`}
       >
         <div
-          className={`flex flex-col gap-2 bg-sky-900 ${
+          className={`flex flex-col gap-2 bg-sky-900 overflow-hidden overflow-y-auto ${
             chatMessages.length !== 0 && `p-4`
           } rounded`}
         >
           {chatMessages.map((msg, index) => (
-            <ul key={index}>
+            <ul key={index} className="prose">
               <li
-                className={`bg-sky-300 text-stone-800 rounded px-1 shadow-md ${
-                  msg.type === "user" ? "" : "hidden"
+                className={`rounded px-1 shadow-md ${
+                  msg.type === "user" ? "bg-sky-300 text-stone-800" : "hidden"
                 }`}
               >
-                {msg.user}
+                {msg.type === "user" ? (
+                  msg.user
+                ) : (
+                  <ReactMarkdown>{msg.bot}</ReactMarkdown>
+                )}
               </li>
               <li
-                className={`bg-sky-950 rounded px-1 shadow-md ${
+                className={`rounded px-1 shadow-md ${
                   msg.type === "assistant" ? "" : "hidden"
                 }`}
               >
-                {msg.bot}
+                {msg.type === "assistant" && (
+                  <ReactMarkdown
+                    className="markdown-bot"
+                    plugins={[gfm]}
+                    children={msg.bot}
+                  />
+                )}
               </li>
             </ul>
           ))}
