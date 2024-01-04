@@ -6,7 +6,7 @@ const HeaderNav = () => {
     <>
       <ul className={linkStyle}>
         <li>
-          <Link to="/home"> Home</Link>
+          <Link to="/">Home</Link>
         </li>
         <li>
           <Link to="/categories"> Commands</Link>
