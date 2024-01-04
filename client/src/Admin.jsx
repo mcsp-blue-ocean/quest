@@ -1,14 +1,24 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  adminStyle,
+  signInStyle,
+  formStyle,
+  credInput,
+  submitForm,
+  regText,
+  accountText,
+  dangerText,
+} from "./style/style";
 
-const Admin = ( {setLoggedIn, setToken, token} ) => {
+const Admin = ({ setLoggedIn, setToken, token }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  
+
   const [accessMessage, setAccessMessage] = useState(null);
 
   const handleLogin = async (event) => {
-
     try {
       event.preventDefault();
       const response = await axios.post("/api/login", {
@@ -35,49 +45,46 @@ const Admin = ( {setLoggedIn, setToken, token} ) => {
   };
 
   return (
-
-    <div>
-      <div className="popup">
-        <div className="popup-inner">
-          <h2 className="text-center">Login</h2>
-          <br />
-          
-    
-          <form onSubmit={handleLogin}> 
-            <div>
-              <label htmlFor="username">Username:</label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <br />
-            <div>
-              <label htmlFor="password">Password:</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <br />
-            <div>
-            <button type="submit">Submit</button>
-            </div>
-          </form>
-        </div>
+    <>
+      <div className={adminStyle}>
+        <p className={signInStyle}>Sign In</p>
+        <hr className="w-64" />
+        <form className={formStyle} onSubmit={handleLogin}>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="username"
+            className={credInput}
+            aria-label="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="password"
+            className={credInput}
+            aria-label="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button className={submitForm} type="submit">
+            Submit
+          </button>
+          <p className={regText}>
+            Not registered yet?{" "}
+            <Link to="/" className={accountText}>
+              Create an Account
+            </Link>
+          </p>
+          {accessMessage && (
+            <div className={!token && dangerText}>{accessMessage}</div>
+          )}
+        </form>
       </div>
-      {accessMessage && (
-        <p className={token ? `text-green-500` : `text-red-500`}>
-          {accessMessage}
-        </p>
-      )}
-    </div>
+    </>
   );
 };
 

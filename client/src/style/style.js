@@ -3,7 +3,7 @@ export const rootStyle = "mx-auto h-dvh text-stone-200";
 export const routeStyle = "mx-auto max-w-7xl";
 
 //Chatbot (needs react for styling the markdown)
-import React from "react";
+import React from "react"; // I'd rather this not be in this file. Move the functions back in the Chatbot if you need to.
 export const toggleBot =
   "flex flex-col items-center fixed bottom-28 right-6 p-2 rounded-lg shadow-xl bg-sky-700 border border-white/50 max-h-[80vh] overflow-hidden ";
 export const messagesStyling =
@@ -39,7 +39,7 @@ export const linkStyle = "flex gap-3 text-lg font-bold";
 
 //Footer
 export const footerStyle =
-  "bg-gradient-to-t from-sky-900 to-transparent sm:sticky top-full flex flex-col items-center gap-8 px-20 py-4";
+  "bg-transparent sm:sticky top-full flex flex-col items-center gap-8 px-20 py-4";
 
 //Footer - Nav
 export const footerNav =
@@ -96,3 +96,16 @@ export const trashStyle = "w-10 absolute top-0 right-10";
 export const scrollStyling =
   "scrollbar-thin scrollbar-thumb-sky-600 scrollbar-track-sky-950 md:w-10/12 h-full mx-auto flex flex-col gap-6 bg-sky-900 mt-10 rounded sm:p-6 p-2 mx-1 sm:overflow-y-auto";
 export const commandEntryStyle = "bg-sky-950 sm:p-4 p-2 rounded shadow text-lg";
+
+//Admin
+export const adminStyle =
+  "sm:h-[600px] flex flex-col justify-center items-center gap-4 bg-sky-900/70 mt-4 border border-white/30 sm:mx-4 rounded shadow-xl p-4 relative";
+export const signInStyle = "text-center font-bold text-5xl text-white";
+export const formStyle = "flex flex-col items-center gap-4";
+export const credInput =
+  "font-bold text-black p-2 rounded-xl placeholder:text-black";
+export const submitForm =
+  "w-full bg-sky-950 px-6 py-2 rounded shadow border border-sky-300 font-bold tracking-wide";
+export const regText = "text-sm leading-relaxed text-grey-900";
+export const accountText = "font-bold text-grey-700";
+export const dangerText = "text-red-700 bg-red-200 p-2 rounded";
