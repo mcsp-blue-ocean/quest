@@ -2,6 +2,18 @@ import { useState } from "react";
 import ai from "./assets/chatbot.svg?web";
 import dotenv from "dotenv";
 import.meta.env.VITE_URL_PATH;
+import {
+  toggleBot,
+  messagesStyling,
+  userStyle,
+  userToggle,
+  botStyle,
+  botToggle,
+  chatStyle,
+  inputStyle,
+  submitStyle,
+  botLocation,
+} from "./style/style";
 //dotenv.config({ path: "../../.env" });
 
 const Chatbot = () => {
@@ -82,32 +94,16 @@ const Chatbot = () => {
 
   return (
     <div className="relative">
-      <div
-        className={`${
-          !isOpen
-            ? "hidden"
-            : "flex flex-col items-center fixed bottom-28 right-6 p-2 rounded-lg shadow-xl bg-sky-700 border border-white/50"
-        }`}
-      >
+      <div className={`${!isOpen ? "hidden" : toggleBot}`}>
         <div
-          className={`flex flex-col gap-2 bg-sky-900 ${
-            chatMessages.length !== 0 && `p-4`
-          } rounded`}
+          className={`${messagesStyling} ${chatMessages.length !== 0 && `p-4`}`}
         >
           {chatMessages.map((msg, index) => (
             <ul key={index}>
-              <li
-                className={`bg-sky-300 text-stone-800 rounded px-1 shadow-md ${
-                  msg.type === "user" ? "" : "hidden"
-                }`}
-              >
+              <li className={`${userStyle} ${msg.type === userToggle}`}>
                 {msg.user}
               </li>
-              <li
-                className={`bg-sky-950 rounded px-1 shadow-md ${
-                  msg.type === "assistant" ? "" : "hidden"
-                }`}
-              >
+              <li className={`${botStyle} ${msg.type === botToggle}`}>
                 {msg.bot}
               </li>
             </ul>
@@ -115,28 +111,21 @@ const Chatbot = () => {
         </div>
         <form
           onSubmit={handleSendMessage}
-          className={`flex justify-between gap-2 w-full ${
-            chatMessages.length !== 0 && "mt-3"
-          }`}
+          className={`${chatStyle} ${chatMessages.length !== 0 && "mt-3"}`}
         >
           <input
             type="text"
             placeholder="Ask"
             value={inputMessage}
             onChange={handleInputChange}
-            className="w-full rounded p-1 bg-sky-200/70 placeholder:text-black text-black"
+            className={inputStyle}
           />
-          <button type="submit" className="bg-stone-800 rounded p-1 shadow-md">
+          <button type="submit" className={submitStyle}>
             Send
           </button>
         </form>
       </div>
-      <img
-        src={ai}
-        alt="ai"
-        onClick={toggleChatbot}
-        className="fixed bottom-0 right-0 m-5 drop-shadow-xl cursor-pointer"
-      />
+      <img src={ai} alt="ai" onClick={toggleChatbot} className={botLocation} />
     </div>
   );
 };
