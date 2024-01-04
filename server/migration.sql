@@ -29,7 +29,7 @@ CREATE TABLE chat_history(
 CREATE TABLE users(
     id SERIAL NOT NULL PRIMARY KEY,
     username VARCHAR(75) UNIQUE NOT NULL,
-    password_hash VARCHAR(75) TEXT NOT NULL);
+    password_hash VARCHAR(75) text NOT NULL);
 
 CREATE TABLE admin_accounts (
   id SERIAL PRIMARY KEY,
