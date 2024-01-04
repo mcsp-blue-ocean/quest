@@ -18,10 +18,14 @@ const How = () => {
           <span className={blue}> T</span>echnologies
         </p>
         <div className="mt-5">
-          <p className="font-bold text-lg underline">How To Use</p>
+          <p className="font-bold text-4xl underline">Mission Statement:</p>
           <p className="max-w-prose leading-relaxed text-lg">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          <br></br>Embark on the Ultimate Coding Adventure with QUEST: Quick Understanding of
+          Essential Software Technologies! Unleash the full potential of command
+          line mastery from Node.js to SQL, Git to React. Elevate your skills
+          with real command examples and let our AI Chatbot be your guide. Join
+          us on a journey where learning meets excitement. Start your QUEST
+          today!
           </p>
         </div>
       </div>
