@@ -2,20 +2,33 @@
 export const rootStyle = "mx-auto h-dvh text-stone-200";
 export const routeStyle = "mx-auto max-w-7xl";
 
-//Chatbot
+//Chatbot (needs react for styling the markdown)
+import React from "react";
 export const toggleBot =
-  "flex flex-col items-center fixed bottom-28 right-6 p-2 rounded-lg shadow-xl bg-sky-700 border border-white/50";
-export const messagesStyling = "w-full flex flex-col gap-2 bg-sky-900 rounded";
+  "flex flex-col items-center fixed bottom-28 right-6 p-2 rounded-lg shadow-xl bg-sky-700 border border-white/50 max-h-[80vh] overflow-hidden ";
+export const messagesStyling =
+  "w-full flex flex-col gap-2 bg-sky-900 rounded max-h-80vh overflow-y-auto";
 export const userStyle = "bg-sky-300 text-stone-800 rounded px-1 shadow-md";
-export const userToggle = "user" ? "" : "hidden";
-export const botStyle = "bg-sky-950 rounded px-1 shadow-md";
-export const botToggle = "assistant" ? "" : "hidden";
+export const userToggle = (msgType) => (msgType === "user" ? "" : "hidden");
+export const botStyle = "bg-sky-950 rounded px-1 shadow-md text-white";
+export const botToggle = (msgType) => (msgType === "assistant" ? "" : "hidden");
 export const chatStyle = "flex justify-between gap-2 w-full";
 export const inputStyle =
   "w-full rounded p-1 bg-sky-200/70 placeholder:text-black text-black";
 export const submitStyle = "bg-stone-800 rounded p-1 shadow-md";
 export const botLocation =
   "fixed bottom-0 right-0 m-5 drop-shadow-xl cursor-pointer";
+export const markdownStyles = {
+  h1: "text-2xl font-bold",
+  h2: "text-xl font-semibold",
+  h3: "text-lg font-semibold",
+  p: "text-base",
+  strong: "font-bold",
+  em: "italic",
+  th: "px-6 py-3 text-left text-xs font-medium text-gray-100 uppercase tracking-wider bg-gray-500;",
+  td: "px-6 py-3 text-left text-xs font-medium text-gray-100 uppercase tracking-wider;",
+  table: "min-w-full divide-y divide-gray-200",
+};
 
 //Header
 export const headerStyle =
@@ -83,18 +96,3 @@ export const trashStyle = "w-10 absolute top-0 right-10";
 export const scrollStyling =
   "scrollbar-thin scrollbar-thumb-sky-600 scrollbar-track-sky-950 md:w-10/12 h-full mx-auto flex flex-col gap-6 bg-sky-900 mt-10 rounded sm:p-6 p-2 mx-1 sm:overflow-y-auto";
 export const commandEntryStyle = "bg-sky-950 sm:p-4 p-2 rounded shadow text-lg";
-
-export const markdownStyles = {
-  h1: "text-white",
-  h2: "text-white",
-  h3: "text-white",
-  h4: "text-white",
-  h5: "text-white",
-  h6: "text-white",
-  strong: "text-white",
-  em: "text-white",
-  p: "text-white",
-  th: "bg-gray-600 text-white p-6 text-left uppercase",
-  td: "text-white p-6 text-left",
-  table: "w-full border-collapse border-gray-600",
-};
