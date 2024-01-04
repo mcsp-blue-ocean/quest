@@ -1,10 +1,23 @@
 import { Link } from "react-router-dom";
 import Command from "./Command";
+import close from "../assets/commands/close.svg";
+import {
+  commandRootStyle,
+  commandCatStyle,
+  commandParentStyle,
+  commandCatText,
+  closeStyle,
+  scrollStyling,
+  commandEntryStyle,
+} from "../style/style";
 
 const SelectedCommands = ({
   selectedCategoryId,
   filteredCommands,
   categories,
+  loggedIn,
+  token,
+  fetchCategories,
 }) => {
   const categoryParent = categories.map(
     (el) => el.id === selectedCategoryId && el.parent_category
@@ -13,29 +26,55 @@ const SelectedCommands = ({
     (el) => el.id === selectedCategoryId && el.category
   );
 
+  const handleDelete = () => {
+    if (loggedIn) {
+      fetch(`/api/categories/${selectedCategoryId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Something went wrong with the delete request.");
+          }
+        })
+        .then(() => {
+          fetchCategories();
+        })
+        .catch((error) => console.error("Error:", error));
+    }
+  };
+
   return (
-    <div className="bg-sky-950 py-4 px-2">
-      <div className="md:w-3/4 mx-auto flex flex-col items-center bg-slate-300 sm:pb-10 rounded relative sm:h-[800px]">
-        <p className="bg-sky-900 rounded inline font-bold p-1 m-1 absolute top-0 left-0">
-          {categoryParent}
-        </p>
-        <Link
-          to="/categories"
-          className="text-black text-2xl font-bold absolute top-0 right-0 px-2"
-        >
-          x
+    <div className={commandRootStyle}>
+      <div className={commandCatStyle}>
+        <p className={commandParentStyle}>{categoryParent}</p>
+
+        {loggedIn ? (
+          <Link to="/categories">
+            <div
+              className="text-black text-2xl font-bold absolute top-0 right-10 px-2"
+              style={{ color: "black", cursor: "pointer" }}
+              onClick={() => handleDelete()}
+            >
+              delete
+            </div>
+          </Link>
+        ) : null}
+
+        <Link to="/categories" className={closeStyle}>
+          <img src={close} alt="close" />
         </Link>
-        <p className="text-center text-black font-bold underline text-5xl mt-10">
-          {categoryName}
-        </p>
-        <ul className="scrollbar-thin scrollbar-thumb-sky-600 scrollbar-track-sky-950 md:w-10/12 h-full mx-auto flex flex-col gap-6 bg-sky-900 mt-10 rounded sm:p-6 p-2 mx-1 sm:overflow-y-auto">
+        <p className={commandCatText}>{categoryName}</p>
+        <ul className={scrollStyling}>
           {filteredCommands &&
             filteredCommands.map(
               ({ command_syntax, command_description }, index) => (
-                <li
-                  key={index}
-                  className="bg-sky-950 sm:p-4 p-2 rounded shadow text-lg"
-                >
+                <li key={index} className={commandEntryStyle}>
                   <Command syntax={command_syntax} />
                   <p>
                     <span className="font-bold">Description: </span>

@@ -3,6 +3,18 @@ import ai from "./assets/chatbot.svg?web";
 import ReactMarkdown from "react-markdown";
 import.meta.env.VITE_URL_PATH;
 import gfm from "remark-gfm";
+import {
+  toggleBot,
+  messagesStyling,
+  userStyle,
+  userToggle,
+  botStyle,
+  botToggle,
+  chatStyle,
+  inputStyle,
+  submitStyle,
+  botLocation,
+} from "./style/style";
 
 const Chatbot = () => {
   // State variables
@@ -189,28 +201,21 @@ const Chatbot = () => {
         </div>
         <form
           onSubmit={handleSendMessage}
-          className={`flex justify-between gap-2 w-full ${
-            chatMessages.length !== 0 && "mt-3"
-          }`}
+          className={`${chatStyle} ${chatMessages.length !== 0 && "mt-3"}`}
         >
           <input
             type="text"
             placeholder="Ask"
             value={inputMessage}
             onChange={handleInputChange}
-            className="w-full rounded p-1 bg-sky-200/70 placeholder:text-black text-black"
+            className={inputStyle}
           />
-          <button type="submit" className="bg-stone-800 rounded p-1 shadow-md">
+          <button type="submit" className={submitStyle}>
             Send
           </button>
         </form>
       </div>
-      <img
-        src={ai}
-        alt="ai"
-        onClick={toggleChatbot}
-        className="fixed bottom-0 right-0 m-5 drop-shadow-xl cursor-pointer"
-      />
+      <img src={ai} alt="ai" onClick={toggleChatbot} className={botLocation} />
     </div>
   );
 };

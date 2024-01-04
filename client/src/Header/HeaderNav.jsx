@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import { linkStyle } from "../style/style";
 
 const HeaderNav = () => {
   return (
     <>
-      <ul className="flex gap-3 text-lg font-bold">
+      <ul className={linkStyle}>
         <li>
-          <Link to="/home"> Home</Link>
+          <Link to="/">Home</Link>
         </li>
         <li>
           <Link to="/categories"> Commands</Link>
