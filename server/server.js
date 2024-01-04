@@ -110,17 +110,21 @@ async function editCommands(req, res, next) {
 
 async function deleteCommands(req, res, next) {
   const id = Number(req.params.id);
+
+  console.log("HITTTTTTTT");
   try {
     const data = await client.query(
       "DELETE FROM commands WHERE id = $1 RETURNING *",
       [id]
     );
     if (data.rows.length === 0) {
+      console.log(data.rows)
       res.sendStatus(404);
     } else {
       res.send(data.rows[0]);
     }
   } catch (error) {
+    console.log("hit catch....")
     next(error);
   }
 }
