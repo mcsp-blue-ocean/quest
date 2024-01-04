@@ -83,3 +83,18 @@ export const trashStyle = "w-10 absolute top-0 right-10";
 export const scrollStyling =
   "scrollbar-thin scrollbar-thumb-sky-600 scrollbar-track-sky-950 md:w-10/12 h-full mx-auto flex flex-col gap-6 bg-sky-900 mt-10 rounded sm:p-6 p-2 mx-1 sm:overflow-y-auto";
 export const commandEntryStyle = "bg-sky-950 sm:p-4 p-2 rounded shadow text-lg";
+
+export const markdownStyles = {
+  h1: "text-white",
+  h2: "text-white",
+  h3: "text-white",
+  h4: "text-white",
+  h5: "text-white",
+  h6: "text-white",
+  strong: "text-white",
+  em: "text-white",
+  p: "text-white",
+  th: "bg-gray-600 text-white p-6 text-left uppercase",
+  td: "text-white p-6 text-left",
+  table: "w-full border-collapse border-gray-600",
+};

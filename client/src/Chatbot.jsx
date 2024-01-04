@@ -1,7 +1,8 @@
 import { useState } from "react";
 import ai from "./assets/chatbot.svg?web";
-import dotenv from "dotenv";
+import ReactMarkdown from "react-markdown";
 import.meta.env.VITE_URL_PATH;
+import gfm from "remark-gfm";
 import {
   toggleBot,
   messagesStyling,
@@ -13,8 +14,8 @@ import {
   inputStyle,
   submitStyle,
   botLocation,
+  markdownStyles,
 } from "./style/style";
-//dotenv.config({ path: "../../.env" });
 
 const Chatbot = () => {
   // State variables
@@ -77,7 +78,7 @@ const Chatbot = () => {
         // Inside the handleSendMessage function, after receiving the response from the server
         const responseData = await response.json();
         const botMessage = {
-          bot: `🤖: ${responseData.message.content}`,
+          bot: responseData.message.content,
           type: "assistant",
         };
 
@@ -99,12 +100,26 @@ const Chatbot = () => {
           className={`${messagesStyling} ${chatMessages.length !== 0 && `p-4`}`}
         >
           {chatMessages.map((msg, index) => (
-            <ul key={index}>
+            <ul key={index} className="prose">
               <li className={`${userStyle} ${msg.type === userToggle}`}>
-                {msg.user}
+                {msg.type === "user" ? (
+                  msg.user
+                ) : (
+                  <ReactMarkdown>{msg.bot}</ReactMarkdown>
+                )}
               </li>
               <li className={`${botStyle} ${msg.type === botToggle}`}>
-                {msg.bot}
+                {msg.type === "assistant" && (
+                  <>
+                    <span className="bot-emoji text-white">🤖:</span>
+
+                    <ReactMarkdown
+                      remarkPlugins={[gfm]}
+                      children={msg.bot}
+                      className={markdownStyles}
+                    />
+                  </>
+                )}
               </li>
             </ul>
           ))}
