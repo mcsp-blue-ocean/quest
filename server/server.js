@@ -196,45 +196,6 @@ async function deleteCategories(req, res, next) {
   }
 }
 
-// TOKEN VERIFICATION FOR ADMIN RIGHTS TO ADD, UPDATE, DELETE
-const verifyToken = (req, res, next) => {
-  const token = req.headers.authorization; //Token has been save to headers from AdminLogin.jsx
-  if (!token) {
-    return res.status(401).json({ error: "Token not provided" });
-  }
-  jwt.verify(token, SECRET_KEY, (err, decoded) => {
-    if (err) {
-      return res.status(403).json({ error: "Invalid token" });
-    }
-    req.decoded = decoded; //if there is a token, it moves on to the next function
-    next();
-  });
-};
-
-app.post("/api/login", (req, res) => {
-  const { username, password } = req.body;
-
-  // CONDITIONAL FOR LOGGING IN TO THE ADMIN ACCOUNT
-  if (
-    username === ADMIN_USERNAME &&
-    // bcrypt.compareSync(password, adminAccount.passwordHash)
-    password === ADMIN_PASSWORD
-  ) {
-    const token = jwt.sign({ username: ADMIN_USERNAME }, SECRET_KEY, {
-      expiresIn: "1h",
-    });
-    res.json({ token });
-  } else {
-    res.status(401).json({ error: "Invalid credentials." });
-  }
-});
-
-// ROUTES WITH ADMIN TOKEN VERIFICATION
-app.post("/api/commands", verifyToken, postCommands);
-app.patch("/api/commands/:id", verifyToken, editCommands);
-app.delete("/api/commands/:id", verifyToken, deleteCommands);
-app.delete("/api/categories/:id", deleteCategories);
-
 async function postChat(req, res, next) {
   const { message, messages } = req.body;
   const payload = {
