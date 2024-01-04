@@ -17,6 +17,7 @@ const SelectedCommands = ({
   categories,
   loggedIn,
   token,
+  fetchCategories,
 }) => {
   const categoryParent = categories.map(
     (el) => el.id === selectedCategoryId && el.parent_category
@@ -42,11 +43,10 @@ const SelectedCommands = ({
           }
         })
         .then(() => {
-          console.log(`deleted categoryID: ${selectedCategoryId}`);
+          fetchCategories();
+          //TODO:// re route from /commands to /categories
         })
         .catch((error) => console.error("Error:", error));
-    } else {
-      console.log("Cant do that bud");
     }
   };
 
@@ -56,13 +56,15 @@ const SelectedCommands = ({
         <p className={commandParentStyle}>{categoryParent}</p>
 
         {loggedIn ? (
-          <div
-            className="text-black text-2xl font-bold absolute top-0 right-10 px-2"
-            style={{ color: "black", cursor: "pointer" }}
-            onClick={() => handleDelete()}
-          >
-            delete
-          </div>
+          <Link to="/categories">
+            <div
+              className="text-black text-2xl font-bold absolute top-0 right-10 px-2"
+              style={{ color: "black", cursor: "pointer" }}
+              onClick={() => handleDelete()}
+            >
+              delete
+            </div>
+          </Link>
         ) : null}
 
         <Link to="/categories" className={closeStyle}>
