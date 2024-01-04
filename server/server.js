@@ -111,7 +111,6 @@ async function editCommands(req, res, next) {
 async function deleteCommands(req, res, next) {
   const id = Number(req.params.id);
 
-  console.log("HITTTTTTTT");
   try {
     const data = await client.query(
       "DELETE FROM commands WHERE id = $1 RETURNING *",
@@ -128,6 +127,29 @@ async function deleteCommands(req, res, next) {
     next(error);
   }
 }
+
+async function deleteCategories(req, res, next) {
+  const id = Number(req.params.id);
+
+  try {
+    const data = await client.query(
+      "DELETE FROM categories WHERE id = $1 RETURNING *",
+      [id]
+    );
+
+    if (data.rows.length === 0) {
+      console.log(data.rows);
+      res.sendStatus(404);
+    } else {
+      console.log("delete category ", id);
+      res.send(data.rows[0]);
+    }
+  } catch (error) {
+    console.log("hit catch....");
+    next(error);
+  }
+}
+
 
 // TOKEN VERIFICATION FOR ADMIN RIGHTS TO ADD, UPDATE, DELETE
 const verifyToken = (req, res, next) => {
@@ -166,6 +188,7 @@ app.post("/api/login", (req, res) => {
 app.post("/api/commands", verifyToken, postCommands);
 app.patch("/api/commands/:id", verifyToken, editCommands);
 app.delete("/api/commands/:id", verifyToken, deleteCommands);
+app.delete("/api/categories/:id", deleteCategories);
 
 async function postChat(req, res, next) {
   const { message, messages } = req.body;

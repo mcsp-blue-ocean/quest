@@ -90,7 +90,8 @@ function App() {
                 categories={categories}
                 loggedIn={loggedIn}
                 token={token}
-                setToken={setToken}z
+                setToken={setToken}
+                fetchCategories={fetchCategories}
               />
             )}
           />
