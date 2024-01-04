@@ -117,13 +117,11 @@ async function deleteCommands(req, res, next) {
       [id]
     );
     if (data.rows.length === 0) {
-      console.log(data.rows)
       res.sendStatus(404);
     } else {
       res.send(data.rows[0]);
     }
   } catch (error) {
-    console.log("hit catch....")
     next(error);
   }
 }
@@ -225,7 +223,7 @@ async function postChat(req, res, next) {
       res.status(200).json({ message: { content: text, role: "assistant" } });
     }
   } catch (error) {
-    console.error("Error in postChat:", error);
+
     next(error);
   }
 }
