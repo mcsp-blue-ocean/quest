@@ -16,7 +16,7 @@ CREATE TABLE categories(
 
 );
 ALTER TABLE
-    commands ADD CONSTRAINT commands_category_id_foreign FOREIGN KEY(category_id) REFERENCES categories(id);
+    commands ADD CONSTRAINT commands_category_id_foreign FOREIGN KEY(category_id) REFERENCES categories(id) ON DELETE CASCADE;
 
 
 CREATE TABLE chat_history(

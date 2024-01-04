@@ -1,46 +1,50 @@
 import Window from "./Window";
+import {
+  pStyle,
+  exampleStyle,
+  header,
+  buttonStyle,
+  howPara,
+} from "../style/style";
 
 const Example = () => {
-  const pStyle = "max-w-prose leading-relaxed mb-2";
   const examples = (
     <ul id="examples" className="p-2">
       <li className={pStyle}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+        git add example_file_name <br></br>
+        Description: Add a file to the staging area.
       </li>
       <li className={pStyle}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+        git commit -m "your message here" <br></br>
+        Description: Commit staged changes with a message.
       </li>
       <li className={pStyle}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+        git push <br></br>
+        Description: Pushes the comitted changes to a remote repository.
+      </li>
+      <li className={pStyle}>
+        git pull <br></br>
+        Description: Update local repository to the newest commit.
       </li>
     </ul>
   );
 
   return (
-    <div className="flex sm:flex-row flex-col items-center bg-sky-800 shadow-xl p-5 lg:px-20 gap-5">
+    <div className={exampleStyle}>
       <div id="left-side" className="sm:w-1/2">
-        <Window color={"bg-stone-800/80"}>{examples}</Window>
+        <Window color={"bg-slate-950/60"}>{examples}</Window>
       </div>
       <div id="right-side" className="sm:w-1/2">
-        <p className="text-6xl font-bold underline mb-5">Examples</p>
-        <p className={`${pStyle} mb-5`}>
-          Crazy cool stuff about the examples and stuff. Crazy cool stuff about
-          the examples and stuff.
+        <p className={header}>Examples</p>
+        <p className={howPara}>
+          Whether you need a quick reference for Syntax or ask the AI Chatbot a
+          question, QUEST is here to help you! To use the Command Cheatsheets,
+          click on the Commands tab at the top and select the Category that you
+          would like to reference. Looking for a category or syntax that isn't
+          on there? No problem! Ask our friendly AI chatbot, powered by Gemini
+          AI, to answer all of your questions ASAP!
         </p>
-        <p className={`${pStyle} mb-5`}>
-          Embark on the Ultimate Coding Quest with QUEST: Quick Understanding of
-          Essential Software Technologies! Unleash the full potential of command
-          line mastery, from Node.js to SQL, Git to React. Elevate your skills
-          with real command examples and let our AI Chatbot be your guide. Join
-          us on a journey where learning meets excitement. Start your QUEST
-          today!"
-        </p>
-        <button className="bg-stone-800 font-bold p-3 rounded">
-          Start Learning Now!
-        </button>
+        <button className={buttonStyle}>Start Learning Now!</button>
       </div>
     </div>
   );

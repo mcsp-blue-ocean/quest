@@ -63,9 +63,32 @@ While leveraging AI for the chatbox feature, a key challenge is tailoring its re
 ## Unforeseen Technical Challenges
 
 ## Lessons Learned from Agile, CI/CD, Testing
+- Deploying the application early in the development process enables continuous monitoring of bugs, allowing for proactive issue identification and resolution.
+
+- Regularly integrating changes into the shared repository helps mitigate potential code conflicts among team members working on the same ticket. This practice encourages frequent pulls from commits, promoting a collaborative and conflict-free development environment.
+
+- The choice of deployment platform plays a crucial role in project success. While Microsoft Azure was initially selected, cost considerations led to a reassessment. Opting for platforms like Render, especially for smaller projects with less demanding specs, can be more cost-effective and efficient.
+
+- Recognize external constraints, like paywalls, and be prepared to adapt. Choosing deployment solutions that align with project requirements and budget constraints is essential for successful production deployment.
 
 ## Video Demo or Screenshots of the App
 
 ## Required Research
 
 ## Future Features
+
+## Building The Application
+The following steps will ensure the proper setup and execution of the application in your local development environment.
+
+- Clone the repository to your local machine using the following command:
+    - git clone <repository-url>
+- Navigate to the project directory and launch the application in a development environment on your local machine.
+- Install the required dependencies by running the following command in the terminal:
+    - npm install
+- Create a .env file in the root of the project and fill out the provided .env template with the necessary configuration settings.
+- Use the migration.sql file to create the necessary database schema by running the following command in the terminal:
+    - psql -U <your-username> -d <your-database-name> -a -f migration.sql
+- Populate the database with sample data using the seed.sql file:
+    - psql -U <your-username> -d <your-database-name> -a -f seed.sql
+- Initiate the development environment by running the following command in the terminal:
+    - npm run dev

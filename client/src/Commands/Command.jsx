@@ -2,6 +2,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useState } from "react";
 import addedCopy from "../assets/commands/copied.svg";
 import addCopy from "../assets/commands/copy.svg";
+import { isCopied, notCopied, commandInputStyling } from "../style/style";
 
 const Command = ({ syntax }) => {
   const [copied, setCopied] = useState(false);
@@ -23,9 +24,9 @@ const Command = ({ syntax }) => {
             value={syntax}
             aria-label="command"
             disabled
-            className={`w-full h-8 ${
-              copied ? `bg-emerald-100` : `bg-sky-100`
-            } text-black p-1 rounded`}
+            className={`${
+              copied ? isCopied : notCopied
+            } ${commandInputStyling}`}
           />
         </div>
         <CopyToClipboard text={syntax} onCopy={handleCopy}>

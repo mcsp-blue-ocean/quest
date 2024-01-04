@@ -1,22 +1,20 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-const Admin = () => {
+const Admin = ( {setLoggedIn, setToken, token} ) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState(null);
+  
   const [accessMessage, setAccessMessage] = useState(null);
 
   const handleLogin = async (event) => {
+
     try {
       event.preventDefault();
       const response = await axios.post("/api/login", {
         username,
         password,
       });
-
-      console.log(username);
-      console.log(password);
 
       const newToken = response.data.token;
 
@@ -28,6 +26,7 @@ const Admin = () => {
       if (newToken) {
         axios.defaults.headers.common["Authorization"] = `Bearer ${newToken}`;
         setAccessMessage("Access Granted!");
+        setLoggedIn(true);
       }
     } catch (error) {
       console.error("Login failed:", error.response.data.error);
@@ -36,12 +35,15 @@ const Admin = () => {
   };
 
   return (
+
     <div>
       <div className="popup">
         <div className="popup-inner">
           <h2 className="text-center">Login</h2>
           <br />
-          <form onSubmit={handleLogin}>
+          
+    
+          <form onSubmit={handleLogin}> 
             <div>
               <label htmlFor="username">Username:</label>
               <input
@@ -65,7 +67,7 @@ const Admin = () => {
             </div>
             <br />
             <div>
-              <button type="submit">Submit</button>
+            <button type="submit">Submit</button>
             </div>
           </form>
         </div>

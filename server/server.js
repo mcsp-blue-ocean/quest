@@ -158,6 +158,7 @@ async function editCommands(req, res, next) {
 
 async function deleteCommands(req, res, next) {
   const id = Number(req.params.id);
+
   try {
     const data = await client.query(
       "DELETE FROM commands WHERE id = $1 RETURNING *",
@@ -172,6 +173,67 @@ async function deleteCommands(req, res, next) {
     next(error);
   }
 }
+
+async function deleteCategories(req, res, next) {
+  const id = Number(req.params.id);
+
+  try {
+    const data = await client.query(
+      "DELETE FROM categories WHERE id = $1 RETURNING *",
+      [id]
+    );
+
+    if (data.rows.length === 0) {
+      console.log(data.rows);
+      res.sendStatus(404);
+    } else {
+      console.log("delete category ", id);
+      res.send(data.rows[0]);
+    }
+  } catch (error) {
+    console.log("hit catch....");
+    next(error);
+  }
+}
+
+// TOKEN VERIFICATION FOR ADMIN RIGHTS TO ADD, UPDATE, DELETE
+const verifyToken = (req, res, next) => {
+  const token = req.headers.authorization; //Token has been save to headers from AdminLogin.jsx
+  if (!token) {
+    return res.status(401).json({ error: "Token not provided" });
+  }
+  jwt.verify(token, SECRET_KEY, (err, decoded) => {
+    if (err) {
+      return res.status(403).json({ error: "Invalid token" });
+    }
+    req.decoded = decoded; //if there is a token, it moves on to the next function
+    next();
+  });
+};
+
+app.post("/api/login", (req, res) => {
+  const { username, password } = req.body;
+
+  // CONDITIONAL FOR LOGGING IN TO THE ADMIN ACCOUNT
+  if (
+    username === ADMIN_USERNAME &&
+    // bcrypt.compareSync(password, adminAccount.passwordHash)
+    password === ADMIN_PASSWORD
+  ) {
+    const token = jwt.sign({ username: ADMIN_USERNAME }, SECRET_KEY, {
+      expiresIn: "1h",
+    });
+    res.json({ token });
+  } else {
+    res.status(401).json({ error: "Invalid credentials." });
+  }
+});
+
+// ROUTES WITH ADMIN TOKEN VERIFICATION
+app.post("/api/commands", verifyToken, postCommands);
+app.patch("/api/commands/:id", verifyToken, editCommands);
+app.delete("/api/commands/:id", verifyToken, deleteCommands);
+app.delete("/api/categories/:id", deleteCategories);
 
 async function postChat(req, res, next) {
   const { message, messages } = req.body;
@@ -208,7 +270,6 @@ async function postChat(req, res, next) {
       res.status(200).json({ message: { content: text, role: "assistant" } });
     }
   } catch (error) {
-    console.error("Error in postChat:", error);
     next(error);
   }
 }

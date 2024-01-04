@@ -5,24 +5,33 @@ import Landing from "./Landing";
 import AdminLogin from "./AdminLogin";
 import Chatbot from "./Chatbot";
 import Admin from "./Admin";
-
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import CommandCategories from "./Commands/CommandCategories";
 import SelectedCommands from "./Commands/SelectedCommands.jsx";
+import { rootStyle, routeStyle } from "./style/style.js";
 
 function App() {
   const [categories, setCategories] = useState([]);
   const [commands, setCommands] = useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
-  const handleCategoryClick = (categoryId) => setSelectedCategoryId(categoryId);
-  const filteredCommands = commands.filter(
-    (command) => command.category_id === selectedCategoryId
-  );
   const [openModal, setOpenModal] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [token, setToken] = useState(null);
+
+  const filteredCommands = commands.filter((command) => command.category_id === selectedCategoryId);
 
   const handleToggleModal = () => {
     setOpenModal(!openModal);
   };
+
+  const handleLogOut = () => {
+    setLoggedIn(false);
+  }
+
+  const handleCategoryClick = (categoryId) => {
+    setSelectedCategoryId(categoryId);
+  }
+  
   const fetchCategories = () => {
     fetch("/api/categories")
       .then((response) => {
@@ -51,24 +60,27 @@ function App() {
     fetchCategories();
   }, []);
 
+
   return (
-    <div id="main" className="mx-auto h-dvh text-stone-200">
-      <Header onToggleModal={handleToggleModal} />
-      <div className="mx-auto max-w-7xl">
+
+    <div id="main" className={rootStyle}>
+      <Header loggedIn={loggedIn} handleLogOut={handleLogOut} />
+      <div className={routeStyle}>
         <Routes>
-          <Route path="/admin" Component={Admin} />
-          <Route path="/home" Component={Landing} />
+          <Route path="/admin" Component={() => loggedIn ? <Navigate replace to={"/"} /> : <Admin setLoggedIn={setLoggedIn} setToken={setToken} token={token}/> } />
+          <Route path="/" Component={Landing} />
           <Route
             path="/categories"
-            Component={() => (
+            Component={() => 
               <CommandCategories
                 selectedCategoryId={selectedCategoryId}
                 setSelectedCategoryId={setSelectedCategoryId}
                 categories={categories}
                 handleCategoryClick={handleCategoryClick}
                 filteredCommands={filteredCommands}
-              />
-            )}
+                loggedIn={loggedIn}
+              /> 
+            }
           />
           <Route
             path="/commands"
@@ -77,6 +89,10 @@ function App() {
                 selectedCategoryId={selectedCategoryId}
                 filteredCommands={filteredCommands}
                 categories={categories}
+                loggedIn={loggedIn}
+                token={token}
+                setToken={setToken}
+                fetchCategories={fetchCategories}
               />
             )}
           />
@@ -89,5 +105,5 @@ function App() {
     </div>
   );
 }
-//made changes
+
 export default App;
