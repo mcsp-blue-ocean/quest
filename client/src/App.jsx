@@ -4,10 +4,10 @@ import Footer from "./Footer";
 import Landing from "./Landing";
 import Chatbot from "./Chatbot";
 import Admin from "./Admin";
-
 import { Routes, Route } from "react-router-dom";
 import CommandCategories from "./Commands/CommandCategories";
 import SelectedCommands from "./Commands/SelectedCommands.jsx";
+import { rootStyle, routeStyle } from "./style/style.js";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -51,9 +51,9 @@ function App() {
   }, []);
 
   return (
-    <div id="main" className="mx-auto h-dvh text-stone-200">
+    <div id="main" className={rootStyle}>
       <Header onToggleModal={handleToggleModal} />
-      <div className="mx-auto max-w-7xl">
+      <div className={routeStyle}>
         <Routes>
           <Route path="/admin" Component={Admin} />
           <Route path="/home" Component={Landing} />
