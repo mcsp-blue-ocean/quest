@@ -15,9 +15,8 @@ const Admin = () => {
         password,
       });
 
-      console.log(username)
-      console.log(password)
-
+      console.log(username);
+      console.log(password);
 
       const newToken = response.data.token;
 
@@ -72,7 +71,7 @@ const Admin = () => {
         </div>
       </div>
       {accessMessage && (
-        <p className={token ? "access-granted" : "access-denied"}>
+        <p className={token ? `text-green-500` : `text-red-500`}>
           {accessMessage}
         </p>
       )}
