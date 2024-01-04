@@ -65,7 +65,7 @@ const Chatbot = () => {
         // Inside the handleSendMessage function, after receiving the response from the server
         const responseData = await response.json();
         const botMessage = {
-          bot: `🤖: ${responseData.message.content}`,
+          bot: responseData.message.content,
           type: "assistant",
         };
 
@@ -113,11 +113,15 @@ const Chatbot = () => {
                 }`}
               >
                 {msg.type === "assistant" && (
-                  <ReactMarkdown
-                    className="markdown-bot"
-                    plugins={[gfm]}
-                    children={msg.bot}
-                  />
+                  <>
+                    <span className="bot-emoji text-white">🤖:</span>
+
+                    <ReactMarkdown
+                      className="markdown-bot"
+                      remarkPlugins={[gfm]}
+                      children={msg.bot}
+                    />
+                  </>
                 )}
               </li>
             </ul>
