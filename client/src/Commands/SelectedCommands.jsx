@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import Command from "./Command";
 import close from "../assets/commands/close.svg";
+import quinn from "../assets/commands/quinn.svg";
 import {
   commandRootStyle,
   commandCatStyle,
   commandParentStyle,
   commandCatText,
   closeStyle,
+  trashStyle,
   scrollStyling,
   commandEntryStyle,
 } from "../style/style";
@@ -54,17 +56,13 @@ const SelectedCommands = ({
       <div className={commandCatStyle}>
         <p className={commandParentStyle}>{categoryParent}</p>
 
-        {loggedIn ? (
+        {loggedIn && (
           <Link to="/categories">
-            <div
-              className="text-black text-2xl font-bold absolute top-0 right-10 px-2"
-              style={{ color: "black", cursor: "pointer" }}
-              onClick={() => handleDelete()}
-            >
-              delete
-            </div>
+            <button onClick={() => handleDelete()}>
+              <img src={quinn} className={trashStyle} alt="trash" />
+            </button>
           </Link>
-        ) : null}
+        )}
 
         <Link to="/categories" className={closeStyle}>
           <img src={close} alt="close" />
