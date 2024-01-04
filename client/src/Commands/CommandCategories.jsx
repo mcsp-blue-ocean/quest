@@ -1,23 +1,25 @@
 import { Link } from "react-router-dom";
+import {
+  categoriesStyle,
+  categoryStyle,
+  parentCatStyle,
+  categoryText,
+} from "../style/style";
 
 const CommandCategories = ({ categories, handleCategoryClick }) => {
   return (
     <>
-      <ul className="grid md:grid-cols-3 sm:grid-cols-2 gap-6 bg-sky-950 p-4">
+      <ul className={categoriesStyle}>
         {categories &&
           categories.map(({ category, id, parent_category }) => (
             <Link to="/commands/">
               <li
-                className="bg-slate-300 rounded px-4 py-14 relative"
+                className={categoryStyle}
                 key={id}
                 onClick={() => handleCategoryClick(id)}
               >
-                <p className="bg-sky-900 rounded inline font-bold p-1 m-1 absolute top-0 left-0">
-                  {parent_category}
-                </p>
-                <p className="text-black text-center font-bold text-4xl">
-                  {category}
-                </p>
+                <p className={parentCatStyle}>{parent_category}</p>
+                <p className={categoryText}>{category}</p>
               </li>
             </Link>
           ))}

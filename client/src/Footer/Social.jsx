@@ -1,14 +1,12 @@
 import { socialIcons } from "./socialData";
+import { iconGroup, iconStyle } from "../style/style";
 
 const Social = () => {
   return (
-    <ul className="flex gap-5 sm:gap-10">
+    <ul className={iconGroup}>
       {socialIcons.map(({ icon, id, alt }) => {
         return (
-          <li
-            key={id}
-            className="w-12 h-12 rounded-full bg-sky-800"
-          >
+          <li key={id} className={iconStyle}>
             <img
               src={icon}
               alt={alt}

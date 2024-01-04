@@ -1,9 +1,13 @@
+import { footerNav } from "../style/style";
+
 const FooterNav = () => {
   const navigation = ["Features", "Resources", "Blog", "Support"];
   return (
-    <ul className="flex gap-6 sm:gap-32 justify-center text-lg font-bold">
+    <ul className={footerNav}>
       {navigation.map((link, index) => (
-        <li key={index}>{link}</li>
+        <a href="#" key={index}>
+          {link}
+        </a>
       ))}
     </ul>
   );

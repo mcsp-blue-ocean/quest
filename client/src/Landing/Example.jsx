@@ -1,7 +1,13 @@
 import Window from "./Window";
+import {
+  pStyle,
+  exampleStyle,
+  header,
+  buttonStyle,
+  howPara,
+} from "../style/style";
 
 const Example = () => {
-  const pStyle = "max-w-prose leading-relaxed mb-2";
   const examples = (
     <ul id="examples" className="p-2">
       <li className={pStyle}>
@@ -24,21 +30,21 @@ const Example = () => {
   );
 
   return (
-    <div className="flex sm:flex-row flex-col items-center bg-sky-800 shadow-xl p-5 lg:px-20 gap-5">
+    <div className={exampleStyle}>
       <div id="left-side" className="sm:w-1/2">
-        <Window color={"bg-stone-800/80"}>{examples}</Window>
+        <Window color={"bg-slate-950/60"}>{examples}</Window>
       </div>
       <div id="right-side" className="sm:w-1/2">
-        <p className="text-4xl font-bold underline mb-5">How to Use:</p>
-        <p className={`${pStyle} mb-5`}>
-          Whether you need a quick reference for Syntax or ask the AI Chatbot a question, QUEST is here to help you!  To use the Command Cheatsheets,
-          click on the Commands tab at the top and select the Category that you would like to reference.  Looking for a category or syntax that isn't on there?  No problem!  Ask
-          our friendly AI chatbot, powered by Gemini AI, to answer all of your questions ASAP!
-
+        <p className={header}>Examples</p>
+        <p className={howPara}>
+          Whether you need a quick reference for Syntax or ask the AI Chatbot a
+          question, QUEST is here to help you! To use the Command Cheatsheets,
+          click on the Commands tab at the top and select the Category that you
+          would like to reference. Looking for a category or syntax that isn't
+          on there? No problem! Ask our friendly AI chatbot, powered by Gemini
+          AI, to answer all of your questions ASAP!
         </p>
-        <button className="bg-stone-800 font-bold p-3 rounded">
-          Start Learning Now!
-        </button>
+        <button className={buttonStyle}>Start Learning Now!</button>
       </div>
     </div>
   );
