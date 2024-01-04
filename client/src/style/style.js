@@ -3,7 +3,7 @@ export const rootStyle = "mx-auto h-dvh text-stone-200";
 export const routeStyle = "mx-auto max-w-7xl";
 
 //Chatbot (needs react for styling the markdown)
-import React from "react";
+import React from "react"; // I'd rather this not be in this file. Move the functions back in the Chatbot if you need to.
 export const toggleBot =
   "flex flex-col items-center fixed bottom-28 right-6 p-2 rounded-lg shadow-xl bg-sky-700 border border-white/50 max-h-[80vh] overflow-hidden ";
 export const messagesStyling =
