@@ -79,6 +79,7 @@ export const commandParentStyle =
 export const commandCatText =
   "text-center text-black font-bold underline text-5xl mt-10";
 export const closeStyle = "w-10 absolute top-0 right-0";
+export const trashStyle = "w-10 absolute top-0 right-10";
 export const scrollStyling =
   "scrollbar-thin scrollbar-thumb-sky-600 scrollbar-track-sky-950 md:w-10/12 h-full mx-auto flex flex-col gap-6 bg-sky-900 mt-10 rounded sm:p-6 p-2 mx-1 sm:overflow-y-auto";
 export const commandEntryStyle = "bg-sky-950 sm:p-4 p-2 rounded shadow text-lg";
