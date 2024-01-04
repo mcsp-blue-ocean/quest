@@ -14,6 +14,7 @@ import {
   inputStyle,
   submitStyle,
   botLocation,
+  markdownStyles,
 } from "./style/style";
 
 const Chatbot = () => {
@@ -131,67 +132,7 @@ const Chatbot = () => {
                     <ReactMarkdown
                       remarkPlugins={[gfm]}
                       children={msg.bot}
-                      components={{
-                        h1: ({ node, ...props }) => (
-                          <h1 style={{ color: "white" }} {...props} />
-                        ),
-                        h2: ({ node, ...props }) => (
-                          <h2 style={{ color: "white" }} {...props} />
-                        ),
-                        h3: ({ node, ...props }) => (
-                          <h3 style={{ color: "white" }} {...props} />
-                        ),
-                        h4: ({ node, ...props }) => (
-                          <h4 style={{ color: "white" }} {...props} />
-                        ),
-                        h5: ({ node, ...props }) => (
-                          <h5 style={{ color: "white" }} {...props} />
-                        ),
-                        h6: ({ node, ...props }) => (
-                          <h6 style={{ color: "white" }} {...props} />
-                        ),
-                        strong: ({ node, ...props }) => (
-                          <strong style={{ color: "white" }} {...props} />
-                        ),
-                        em: ({ node, ...props }) => (
-                          <em style={{ color: "white" }} {...props} />
-                        ),
-                        p: ({ node, ...props }) => (
-                          <p style={{ color: "white" }} {...props} />
-                        ),
-                        th: ({ node, ...props }) => (
-                          <th
-                            style={{
-                              backgroundColor: "gray",
-                              color: "white",
-                              padding: "6px",
-                              textAlign: "left",
-                              textTransform: "uppercase",
-                            }}
-                            {...props}
-                          />
-                        ),
-                        td: ({ node, ...props }) => (
-                          <td
-                            style={{
-                              color: "white",
-                              padding: "6px",
-                              textAlign: "left",
-                            }}
-                            {...props}
-                          />
-                        ),
-                        table: ({ node, ...props }) => (
-                          <table
-                            style={{
-                              width: "100%",
-                              borderCollapse: "collapse",
-                              borderColor: "gray",
-                            }}
-                            {...props}
-                          />
-                        ),
-                      }}
+                      className={markdownStyles}
                     />
                   </>
                 )}
