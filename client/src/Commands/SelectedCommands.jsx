@@ -28,7 +28,7 @@ const SelectedCommands = ({
 
   const handleDelete = () => {
     if (loggedIn) {
-      fetch(`/api/commands/${selectedCategoryId}`, {
+      fetch(`/api/categories/${selectedCategoryId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -44,7 +44,6 @@ const SelectedCommands = ({
         })
         .then(() => {
           fetchCategories();
-          //TODO:// re route from /commands to /categories
         })
         .catch((error) => console.error("Error:", error));
     }
