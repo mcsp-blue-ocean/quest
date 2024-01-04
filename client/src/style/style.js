@@ -17,16 +17,20 @@ export const submitStyle = "bg-stone-800 rounded p-1 shadow-md";
 export const botLocation =
   "fixed bottom-0 right-0 m-5 drop-shadow-xl cursor-pointer";
 
-//Footer
-export const footerStyle =
-  "bg-gradient-to-t from-sky-900 to-transparent sm:sticky top-full flex flex-col items-center gap-10 px-20 py-4";
-
 //Header
 export const headerStyle =
   "mx-auto 2xl:w-3/4 flex flex-row items-center justify-between uppercase border-b border-white/10 p-3";
 
 //Header - Nav
 export const linkStyle = "flex gap-3 text-lg font-bold";
+
+//Footer
+export const footerStyle =
+  "bg-gradient-to-t from-sky-900 to-transparent sm:sticky top-full flex flex-col items-center gap-8 px-20 py-4";
+
+//Footer - Nav
+export const footerNav =
+  "flex gap-6 sm:gap-32 justify-center text-lg font-bold";
 
 //Landing - How
 export const qColor = "text-sky-400";
@@ -52,10 +56,6 @@ export const buttonStyle = "bg-stone-800 font-bold p-3 mt-2 rounded";
 export const buttonsStyle = "bg-sky-300 h-4 w-4 rounded-full";
 export const windowStyle = "rounded-lg py-2 border border-white/30 shadow-lg";
 export const buttonGroup = "flex gap-2 border-b border-white/30 px-2 pb-2";
-
-//Footer - Nav
-export const footerNav =
-  "flex gap-6 sm:gap-32 justify-center text-lg font-bold";
 
 //Commands - Command
 export const isCopied = "bg-emerald-100";
