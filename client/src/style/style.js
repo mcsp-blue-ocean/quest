@@ -31,7 +31,7 @@ export const linkStyle = "flex gap-3 text-lg font-bold";
 //Landing - How
 export const qColor = "text-sky-400";
 export const howStyle =
-  "flex sm:flex-row flex-col items-center bg-sky-950 p-5 lg:px-10 gap-5";
+  "flex sm:flex-row flex-col items-center bg-sky-900/40 p-5 lg:px-10 gap-5";
 export const questText = "max-w-prose text-3xl sm:text-4xl font-bold";
 export const howText = "font-bold text-lg underline";
 export const howPara = "max-w-prose leading-relaxed";
@@ -44,7 +44,7 @@ export const iconStyle = "w-12 h-12 rounded-full bg-sky-800";
 //Landing - Example
 export const pStyle = "max-w-prose leading-relaxed mb-2";
 export const exampleStyle =
-  "flex sm:flex-row flex-col items-center bg-sky-800 shadow-xl p-5 lg:px-20 gap-5";
+  "flex sm:flex-row flex-col items-center bg-sky-800 shadow-xl p-5 lg:px-20 rounded-b gap-5";
 export const header = "text-6xl font-bold underline mb-5";
 export const buttonStyle = "bg-stone-800 font-bold p-3 mt-2 rounded";
 

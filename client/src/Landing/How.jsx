@@ -39,7 +39,7 @@ const How = () => {
       </div>
       <div id="right-side" className={rightStyle}>
         <Tech />
-        <Window color={"bg-sky-900"}>{computer}</Window>
+        <Window color={"bg-sky-500/40"}>{computer}</Window>
       </div>
     </div>
   );
