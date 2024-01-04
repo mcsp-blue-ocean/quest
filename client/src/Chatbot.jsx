@@ -31,6 +31,32 @@ const Chatbot = () => {
     setInputMessage(e.target.value);
   };
 
+  // Helper function to create a styled component for ReactMarkdown
+  const createStyledMarkdownComponent = (Tag, style) => {
+    return (props) => <Tag className={style} {...props} />;
+  };
+
+  // Define the markdown components with their respective styles
+  const markdownComponents = {
+    h1: (props) =>
+      createStyledMarkdownComponent("h1", markdownStyles.h1)(props),
+    h2: (props) =>
+      createStyledMarkdownComponent("h2", markdownStyles.h2)(props),
+    h3: (props) =>
+      createStyledMarkdownComponent("h3", markdownStyles.h3)(props),
+    p: (props) => createStyledMarkdownComponent("p", markdownStyles.p)(props),
+    strong: (props) =>
+      createStyledMarkdownComponent("strong", markdownStyles.strong)(props),
+    em: (props) =>
+      createStyledMarkdownComponent("em", markdownStyles.em)(props),
+    th: (props) =>
+      createStyledMarkdownComponent("th", markdownStyles.th)(props),
+    td: (props) =>
+      createStyledMarkdownComponent("td", markdownStyles.td)(props),
+    table: (props) =>
+      createStyledMarkdownComponent("table", markdownStyles.table)(props),
+  };
+
   //chatbot UI coauthed by Greg and Mitch
   const handleSendMessage = async (e) => {
     //const { REACT_APP_BASE_URL } = process.env;
@@ -101,26 +127,25 @@ const Chatbot = () => {
         >
           {chatMessages.map((msg, index) => (
             <ul key={index} className="prose">
-              <li className={`${userStyle} ${msg.type === userToggle}`}>
+              <li className={`${userStyle} ${userToggle(msg.type)}`}>
                 {msg.type === "user" ? (
                   msg.user
                 ) : (
                   <ReactMarkdown>{msg.bot}</ReactMarkdown>
                 )}
               </li>
-              <li className={`${botStyle} ${msg.type === botToggle}`}>
+              <div className={`${botStyle} ${botToggle(msg.type)}`}>
                 {msg.type === "assistant" && (
                   <>
                     <span className="bot-emoji text-white">🤖:</span>
-
                     <ReactMarkdown
                       remarkPlugins={[gfm]}
                       children={msg.bot}
-                      className={markdownStyles}
+                      components={markdownComponents}
                     />
                   </>
                 )}
-              </li>
+              </div>
             </ul>
           ))}
         </div>
