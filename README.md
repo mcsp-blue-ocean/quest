@@ -79,9 +79,7 @@ While leveraging AI for the chatbox feature, a key challenge is tailoring its re
   </h2>
 
 <p align="center">
-  <video width="640" height="480" controls>
-    <source src="images/demo.mp4" type="video/mp4">
-  </video>
+  <video src="images/demo.mp4" width="640" height="480" controls />
 </p>
 
 ## Required Research
