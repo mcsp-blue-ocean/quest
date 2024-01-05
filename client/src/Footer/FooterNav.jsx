@@ -1,13 +1,14 @@
 import { footerNav } from "../style/style";
+import { Link } from "react-router-dom";
 
 const FooterNav = () => {
   const navigation = ["Features", "Resources", "Blog", "Support"];
   return (
     <ul className={footerNav}>
       {navigation.map((link, index) => (
-        <a href="#" key={index}>
-          {link}
-        </a>
+        <li key={index}>
+          <Link to="/">{link}</Link>
+        </li>
       ))}
     </ul>
   );

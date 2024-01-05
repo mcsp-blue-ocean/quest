@@ -11,8 +11,7 @@ const Header = ({ onToggleModal, loggedIn, handleLogOut }) => {
     <div className="bg-sky-800">
       <div className={headerStyle}>
         <HeaderNav />
-        <img src={logo} className="w-28 sm:block hidden" />
-
+        <img src={logo} alt="logo" className="w-28 sm:block hidden" />
         {loggedIn ? (
           <button onClick={handleLogOut}>
             <img src={logout} alt="logout" className="w-14" />

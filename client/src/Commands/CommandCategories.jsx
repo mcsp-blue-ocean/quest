@@ -12,16 +12,14 @@ const CommandCategories = ({ categories, handleCategoryClick }) => {
       <ul className={categoriesStyle}>
         {categories &&
           categories.map(({ category, id, parent_category }) => (
-            <Link to="/commands/">
-              <li
-                className={categoryStyle}
-                key={id}
-                onClick={() => handleCategoryClick(id)}
-              >
-                <p className={parentCatStyle}>{parent_category}</p>
-                <p className={categoryText}>{category}</p>
-              </li>
-            </Link>
+            <li key={id} onClick={() => handleCategoryClick(id)}>
+              <Link to="/commands/">
+                <div className={categoryStyle}>
+                  <p className={parentCatStyle}>{parent_category}</p>
+                  <p className={categoryText}>{category}</p>
+                </div>
+              </Link>
+            </li>
           ))}
       </ul>
     </>
