@@ -78,9 +78,11 @@ While leveraging AI for the chatbox feature, a key challenge is tailoring its re
   Video Demo
   </h2>
 
-<p align="center">
-  <video src="images/demo.mp4" width="640" height="480" controls />
-</p>
+<div align="center">
+  
+https://github.com/mcsp-blue-ocean/quest/assets/29067169/e90b96d2-f8f1-4f59-861a-8221dee02159
+
+</div>
 
 ## Required Research
 
