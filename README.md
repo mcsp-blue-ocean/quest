@@ -1,7 +1,6 @@
 # Unlock the Code: Transform Your Future with Quest!
 
-Visit out site here: https://quest-81n8.onrender.com/
-or here: https://victorious-plant-0d9bddc10.4.azurestaticapps.net/
+Visit out site here: [Render deployment](https://quest-81n8.onrender.com/) or here: [Azure deployment](https://victorious-plant-0d9bddc10.4.azurestaticapps.net/).
 
 ## Contributors
 
@@ -34,7 +33,7 @@ Our project is a testament to the fusion of theoretical knowledge and practical 
 ![React](https://img.icons8.com/color/48/000000/react-native.png) React
 ![Node.js](https://img.icons8.com/color/48/000000/nodejs.png) Node.js
 ![Express](https://img.icons8.com/color/48/000000/nodejs.png) Express
-![Tailwind CSS](https://img.icons8.com/color/48/000000/tailwind-css.png) Tailwind CSS
+<!-- ![Tailwind CSS](https://img.icons8.com/color/48/000000/tailwind-css.png) Tailwind CSS -->
 
 ## Problem Statement
 
@@ -84,23 +83,24 @@ https://github.com/mcsp-blue-ocean/quest/assets/29067169/e90b96d2-f8f1-4f59-861a
 
 </div>
 
-## Required Research
-
 ## Future Features
+- Build out and link all CRUD routes
+- Build out DB for more accounts with different levels of permissions
+- Ability to download content to PDF
 
 ## Building The Application
 
 The following steps will ensure the proper setup and execution of the application in your local development environment.
 
 - Clone the repository to your local machine using the following command:
-  - git clone <repository-url>
+  - `git clone <repository-url>`
 - Navigate to the project directory and launch the application in a development environment on your local machine.
 - Install the required dependencies by running the following command in the terminal:
-  - npm install
+  - `npm install`
 - Create a .env file in the root of the project and fill out the provided .env template with the necessary configuration settings.
 - Use the migration.sql file to create the necessary database schema by running the following command in the terminal:
-  - psql -U <your-username> -d <your-database-name> -a -f migration.sql
+  - `psql -U <your-username> -d <your-database-name> -a -f migration.sql`
 - Populate the database with sample data using the seed.sql file:
-  - psql -U <your-username> -d <your-database-name> -a -f seed.sql
+  - `psql -U <your-username> -d <your-database-name> -a -f seed.sql`
 - Initiate the development environment by running the following command in the terminal:
-  - npm run dev
+  - `npm run dev`
