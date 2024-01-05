@@ -78,7 +78,11 @@ While leveraging AI for the chatbox feature, a key challenge is tailoring its re
   Video Demo
   </h2>
 
-[<p align="center"><img src="images/demo.gif" alt="Demo"></p>](https://www.veed.io/view/aab0fbd7-907a-448b-8434-0e3e827688f9?panel=share)
+<p align="center">
+  <video width="640" height="480" controls>
+    <source src="images/demo.mp4" type="video/mp4">
+  </video>
+</p>
 
 ## Required Research
 
