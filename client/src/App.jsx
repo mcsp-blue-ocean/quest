@@ -17,7 +17,9 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [token, setToken] = useState(null);
 
-  const filteredCommands = commands.filter((command) => command.category_id === selectedCategoryId);
+  const filteredCommands = commands.filter(
+    (command) => command.category_id === selectedCategoryId
+  );
 
   const handleToggleModal = () => {
     setOpenModal(!openModal);
@@ -25,12 +27,12 @@ function App() {
 
   const handleLogOut = () => {
     setLoggedIn(false);
-  }
+  };
 
   const handleCategoryClick = (categoryId) => {
     setSelectedCategoryId(categoryId);
-  }
-  
+  };
+
   const fetchCategories = () => {
     fetch("/api/categories")
       .then((response) => {
@@ -59,18 +61,29 @@ function App() {
     fetchCategories();
   }, []);
 
-
   return (
-
     <div id="main" className={rootStyle}>
       <Header loggedIn={loggedIn} handleLogOut={handleLogOut} />
       <div className={routeStyle}>
         <Routes>
-          <Route path="/admin" Component={() => loggedIn ? <Navigate replace to={"/"} /> : <Admin setLoggedIn={setLoggedIn} setToken={setToken} token={token}/> } />
+          <Route
+            path="/admin"
+            Component={() =>
+              loggedIn ? (
+                <Navigate replace to={"/"} />
+              ) : (
+                <Admin
+                  setLoggedIn={setLoggedIn}
+                  setToken={setToken}
+                  token={token}
+                />
+              )
+            }
+          />
           <Route path="/" Component={Landing} />
           <Route
             path="/categories"
-            Component={() => 
+            Component={() => (
               <CommandCategories
                 selectedCategoryId={selectedCategoryId}
                 setSelectedCategoryId={setSelectedCategoryId}
@@ -78,8 +91,8 @@ function App() {
                 handleCategoryClick={handleCategoryClick}
                 filteredCommands={filteredCommands}
                 loggedIn={loggedIn}
-              /> 
-            }
+              />
+            )}
           />
           <Route
             path="/commands"
