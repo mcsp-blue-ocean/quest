@@ -58,6 +58,7 @@ const Admin = ({ setLoggedIn, setToken, token }) => {
             className={credInput}
             aria-label="username"
             value={username}
+            autoFocus
             onChange={(e) => setUsername(e.target.value)}
           />
           <input
