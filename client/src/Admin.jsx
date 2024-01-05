@@ -72,7 +72,7 @@ const Admin = ({ setLoggedIn, setToken, token }) => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button className={submitForm} type="submit">
-            Submit
+            Log In
           </button>
           <p className={regText}>
             Not registered yet?{" "}

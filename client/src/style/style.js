@@ -103,7 +103,7 @@ export const adminStyle =
 export const signInStyle = "text-center font-bold text-5xl text-white";
 export const formStyle = "flex flex-col items-center gap-4";
 export const credInput =
-  "font-bold text-black p-2 rounded-xl placeholder:text-black";
+  "w-full font-bold text-black p-2 rounded-xl placeholder:text-black";
 export const submitForm =
   "w-full bg-sky-950 px-6 py-2 rounded shadow border border-sky-300 font-bold tracking-wide";
 export const regText = "text-sm leading-relaxed text-grey-900";
